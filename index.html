@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kartavya Pathak — CSE student at MSRIT. Python developer, AI automation enthusiast, 120 WPM typist, and gym regular building the future one rep at a time.">
+  <meta name="author" content="Kartavya Pathak">
+  <meta property="og:title" content="Kartavya Pathak | Code. Lift. Automate.">
+  <meta property="og:description" content="Future software engineer. AI-powered automation. 120 WPM. MSRIT CSE.">
+  <meta property="og:url" content="https://kartavyapathak.com">
+  <title>Kartavya Pathak | Code. Lift. Automate.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-bar"><span></span></div>
+      <p class="preloader-text">Warming up the stack<span class="dots"></span></p>
+      <p class="preloader-sub">No PR too heavy. No bug too stubborn.</p>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-fill" id="scrollProgress"></div>
+    <span class="scroll-progress-label">Session Progress</span>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Stack</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#typing">WPM</a></li>
+        <li><a href="#contact" class="nav-cta">Spot Me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="pulse-dot"></span>
+          MSRIT · CSE Core · Class of 2030
+        </div>
+        <h1 class="hero-title reveal">
+          <span class="hero-line">I don't just</span>
+          <span class="hero-line hero-line-accent">write code.</span>
+          <span class="hero-line">I <em>rep</em> it.</span>
+        </h1>
+        <p class="hero-sub reveal">
+          Future software engineer who ships faster with AI spotters,
+          types at <strong>120 WPM</strong>, and treats every automation like a new PR.
+        </p>
+        <div class="hero-terminal reveal">
+          <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            <code>kartavya@msrit ~ %</code>
+          </div>
+          <div class="terminal-body">
+            <p><span class="t-prompt">$</span> whoami</p>
+            <p class="t-output">Kartavya Pathak — Python dev, AI automation lifter, gym regular</p>
+            <p><span class="t-prompt">$</span> cat mission.txt</p>
+            <p class="t-output">Automate everything. Outwork the experience gap. Never skip leg day <em>or</em> edge cases.</p>
+            <p><span class="t-prompt">$</span> <span class="terminal-cursor" id="terminalCursor">_</span></p>
+          </div>
+        </div>
+        <div class="hero-actions reveal">
+          <a href="#projects" class="btn btn-primary">See the Workout Plan</a>
+          <a href="#contact" class="btn btn-ghost">Let's Train Together</a>
+        </div>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat-card">
+          <span class="stat-num" data-count="120">0</span>
+          <span class="stat-unit">WPM</span>
+          <span class="stat-label">Finger PR</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">AI</span>
+          <span class="stat-unit">×</span>
+          <span class="stat-label">Main Spotter</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">∞</span>
+          <span class="stat-unit">reps</span>
+          <span class="stat-label">Automations queued</span>
+        </div>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <span>Scroll to start the set</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">01 / About</span>
+          <h2>Built Different.<br><span class="text-accent">Literally.</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-card reveal">
+            <div class="about-icon">🎓</div>
+            <h3>Freshman, Not Fresh Ideas</h3>
+            <p>
+              Starting CSE Core at <strong>MS Ramaiah Institute of Technology (MSRIT)</strong>.
+              No internship yet — but I'm stacking skills like plates on a barbell.
+              Experience is a number; efficiency is a mindset.
+            </p>
+          </div>
+          <div class="about-card reveal">
+            <div class="about-icon">🤖</div>
+            <h3>AI Is My Spotter</h3>
+            <p>
+              I use AI to automate the grind — scripts, workflows, and systems that let me
+              punch above my experience weight class. While others debate tools, I'm already
+              <em>repping out</em> deliverables.
+            </p>
+          </div>
+          <div class="about-card reveal">
+            <div class="about-icon">🏋️</div>
+            <h3>Gym Enthusiast IRL</h3>
+            <p>
+              Discipline in the squat rack translates to discipline in the codebase.
+              Consistency beats motivation. Progressive overload — in the gym <em>and</em> in learning.
+            </p>
+          </div>
+          <div class="about-card about-card-wide reveal">
+            <blockquote class="about-quote">
+              "I may not have years of work experience, but I know how to leverage AI to get more done
+              than people who've been in the industry for years. That's not arrogance — that's my training protocol."
+            </blockquote>
+            <div class="about-tags">
+              <span>Python</span>
+              <span>Web Dev</span>
+              <span>AI Automation</span>
+              <span>Problem Solving</span>
+              <span>Fast Learner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills / Stack -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">02 / The Stack</span>
+          <h2>My Current<br><span class="text-accent">PR Board</span></h2>
+          <p class="section-desc">Personal records in progress. Always adding weight.</p>
+        </div>
+        <div class="pr-board">
+          <div class="pr-item reveal" style="--delay: 0">
+            <div class="pr-weight">🐍</div>
+            <div class="pr-info">
+              <h3>Python</h3>
+              <p>Backend logic, scripting, automation pipelines — my bread and peanut butter (bulk season).</p>
+              <div class="pr-bar"><span style="--width: 85%"></span></div>
+            </div>
+            <span class="pr-tag">Heavy Set</span>
+          </div>
+          <div class="pr-item reveal" style="--delay: 1">
+            <div class="pr-weight">🌐</div>
+            <div class="pr-info">
+              <h3>Web Development</h3>
+              <p>HTML, CSS, JavaScript — building interfaces that actually flex.</p>
+              <div class="pr-bar"><span style="--width: 70%"></span></div>
+            </div>
+            <span class="pr-tag">Working Set</span>
+          </div>
+          <div class="pr-item reveal" style="--delay: 2">
+            <div class="pr-weight">⚡</div>
+            <div class="pr-info">
+              <h3>AI Automation</h3>
+              <p>LLMs, agents, workflow automation — turning 8-hour tasks into 8-minute warm-ups.</p>
+              <div class="pr-bar"><span style="--width: 90%"></span></div>
+            </div>
+            <span class="pr-tag">Max Effort</span>
+          </div>
+          <div class="pr-item reveal" style="--delay: 3">
+            <div class="pr-weight">⌨️</div>
+            <div class="pr-info">
+              <h3>10-Finger Touch Typing</h3>
+              <p>120 WPM on Monkeytype. Fingers never skip keyboard day.</p>
+              <div class="pr-bar"><span style="--width: 95%"></span></div>
+            </div>
+            <span class="pr-tag">PR Locked</span>
+          </div>
+        </div>
+        <p class="skills-pun reveal">
+          💪 Full stack? Nah. <strong>Full body stack.</strong> Mind, muscle, and machine learning.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">03 / Projects</span>
+          <h2>The Rack Is<br><span class="text-accent">Loading...</span></h2>
+          <p class="section-desc">Empty plates today. PRs dropping soon. Check back after I finish this set.</p>
+        </div>
+        <div class="project-rack">
+          <article class="project-slot reveal">
+            <div class="slot-plate">
+              <span class="slot-weight">?</span>
+              <span class="slot-kg">COMING SOON</span>
+            </div>
+            <div class="slot-info">
+              <h3>Project Slot #1</h3>
+              <p>Reserved for my first big build. Currently in the warm-up phase.</p>
+              <span class="slot-status">Resting between sets</span>
+            </div>
+          </article>
+          <article class="project-slot reveal">
+            <div class="slot-plate slot-plate-alt">
+              <span class="slot-weight">?</span>
+              <span class="slot-kg">COMING SOON</span>
+            </div>
+            <div class="slot-info">
+              <h3>Project Slot #2</h3>
+              <p>AI automation project — details loading like a new 1RM attempt.</p>
+              <span class="slot-status">Programming the routine</span>
+            </div>
+          </article>
+          <article class="project-slot reveal">
+            <div class="slot-plate slot-plate-accent">
+              <span class="slot-weight">?</span>
+              <span class="slot-kg">COMING SOON</span>
+            </div>
+            <div class="slot-info">
+              <h3>Project Slot #3</h3>
+              <p>Web app or tool — still picking the right weight for the bar.</p>
+              <span class="slot-status">Chalk hands, thinking...</span>
+            </div>
+          </article>
+        </div>
+        <p class="projects-note reveal">
+          🏗️ No cap — projects are coming. I'm in college now and building in public.
+          Follow along as I turn these empty slots into real <strong>pull requests</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Typing / Monkeytype -->
+    <section class="section typing" id="typing">
+      <div class="container">
+        <div class="typing-wrapper reveal">
+          <div class="typing-content">
+            <span class="section-tag">04 / Keyboard Day</span>
+            <h2>120 WPM.<br><span class="text-accent">No Cheat Reps.</span></h2>
+            <p>
+              10-finger touch typing at competition pace. My fingers run a bulk cycle —
+              every keystroke is a rep, every paragraph is a set.
+            </p>
+            <div class="typing-stats">
+              <div class="typing-stat">
+                <span class="typing-big" data-count="120">0</span>
+                <span>WPM</span>
+              </div>
+              <div class="typing-stat">
+                <span class="typing-big">10</span>
+                <span>Fingers</span>
+              </div>
+              <div class="typing-stat">
+                <span class="typing-big">0</span>
+                <span>Backspaces*</span>
+              </div>
+            </div>
+            <p class="typing-footnote">* aspirationally, on a good day</p>
+            <a href="https://monkeytype.com/profile/YOUR_USERNAME" class="btn btn-primary btn-monkeytype" id="monkeytypeLink" target="_blank" rel="noopener noreferrer">
+              <span>View on Monkeytype</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+            <p class="typing-hint">Update your links in <code>js/config.js</code></p>
+          </div>
+          <div class="typing-demo" aria-label="Typing speed demo">
+            <div class="keyboard-visual">
+              <div class="key-row">
+                <span class="key active">K</span><span class="key">A</span><span class="key active">R</span><span class="key">T</span>
+                <span class="key active">A</span><span class="key">V</span><span class="key active">Y</span><span class="key">A</span>
+              </div>
+              <div class="key-row">
+                <span class="key">P</span><span class="key active">A</span><span class="key">T</span><span class="key active">H</span>
+                <span class="key active">A</span><span class="key">K</span>
+              </div>
+              <div class="wpm-live">
+                <span id="liveWpm">120</span>
+                <small>wpm</small>
+              </div>
+            </div>
+            <div class="typing-stream" id="typingStream">
+              <span>automate</span><span>efficiency</span><span>python</span><span>msrit</span><span>120wpm</span><span>spotter</span><span>deploy</span><span>grind</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section education" id="education">
+      <div class="container">
+        <div class="edu-card reveal">
+          <div class="edu-badge">🎯 Target Career</div>
+          <h2>Software Engineer</h2>
+          <div class="edu-details">
+            <div class="edu-item">
+              <span class="edu-label">Institution</span>
+              <span class="edu-value">MS Ramaiah Institute of Technology (MSRIT)</span>
+            </div>
+            <div class="edu-item">
+              <span class="edu-label">Program</span>
+              <span class="edu-value">B.E. Computer Science & Engineering (Core)</span>
+            </div>
+            <div class="edu-item">
+              <span class="edu-label">Status</span>
+              <span class="edu-value">Starting · Freshman</span>
+            </div>
+            <div class="edu-item">
+              <span class="edu-label">Internship</span>
+              <span class="edu-value edu-muted">Hunting season — open to opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-wrapper reveal">
+          <div class="contact-content">
+            <span class="section-tag">05 / Spot Me</span>
+            <h2>Let's Build<br><span class="text-accent">Something Heavy.</span></h2>
+            <p>
+              Looking for collaborators, mentors, or anyone who thinks AI + hustle beats
+              years of coasting. Drop a line — I respond faster than my typing speed.*
+            </p>
+            <p class="contact-footnote">* okay, maybe not <em>that</em> fast, but I'll get back to you</p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:hello@kartavyapathak.com" class="contact-link">
+              <span class="contact-icon">✉️</span>
+              <span>
+                <strong>Email</strong>
+                <small>hello@kartavyapathak.com</small>
+              </span>
+            </a>
+            <a href="https://github.com/" class="contact-link" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon">💻</span>
+              <span>
+                <strong>GitHub</strong>
+                <small>Add your profile link</small>
+              </span>
+            </a>
+            <a href="https://linkedin.com/" class="contact-link" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon">🔗</span>
+              <span>
+                <strong>LinkedIn</strong>
+                <small>Add your profile link</small>
+              </span>
+            </a>
+          </div>
+        </div>
+        <footer class="footer reveal">
+          <p class="footer-pun">Built with progressive overload — in code and in life.</p>
+          <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
