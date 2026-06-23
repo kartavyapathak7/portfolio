@@ -2,10 +2,10 @@
  * Quick config — update these links and you're good to go.
  */
 const SITE_CONFIG = {
-  monkeytype: 'https://monkeytype.com/profile/YOUR_USERNAME',
-  github: 'https://github.com/YOUR_USERNAME',
-  linkedin: 'https://linkedin.com/in/YOUR_USERNAME',
-  email: 'hello@kartavyapathak.com',
+  monkeytype: 'https://monkeytype.com/profile/kartavya40',
+  github: 'https://github.com/kartavyapathak',
+  linkedin: 'https://www.linkedin.com/in/kartavya-pathak/',
+  email: 'kartavyapathak40@gmail.com',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
