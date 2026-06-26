@@ -3,14 +3,19 @@
  */
 const SITE_CONFIG = {
   monkeytype: 'https://monkeytype.com/profile/kartavya40',
+  monkeytypeUsername: 'kartavya40',
   github: 'https://github.com/kartavyapathak',
   linkedin: 'https://www.linkedin.com/in/kartavya-pathak/',
   email: 'kartavyapathak40@gmail.com',
+  fitnessBlog: 'https://gym24-7.blogspot.com',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   const monkeytypeLink = document.getElementById('monkeytypeLink');
   if (monkeytypeLink) monkeytypeLink.href = SITE_CONFIG.monkeytype;
+
+  const blogLink = document.getElementById('fitnessBlogLink');
+  if (blogLink) blogLink.href = SITE_CONFIG.fitnessBlog;
 
   document.querySelectorAll('.contact-link').forEach((link) => {
     const label = link.querySelector('strong')?.textContent?.toLowerCase();

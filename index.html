@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kartavya Pathak — CSE student at MSRIT. Python developer, AI automation enthusiast and 120 WPM typist, building the future one rep at a time.">
+  <meta name="description" content="Kartavya Pathak — CSE student at MSRIT. Python developer, AI automation enthusiast and 120 WPM typist.">
   <meta name="author" content="Kartavya Pathak">
-  <meta property="og:title" content="Kartavya Pathak | Code. Lift. Automate.">
+  <meta property="og:title" content="Kartavya Pathak | Software Engineer">
   <meta property="og:description" content="Future software engineer. AI-powered automation. 120 WPM. MSRIT CSE.">
   <meta property="og:url" content="https://kartavyapathak.com">
-  <title>Kartavya Pathak | Code. Lift. Automate.</title>
+  <title>Kartavya Pathak | Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -23,15 +23,15 @@
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
       <div class="preloader-bar"><span></span></div>
-      <p class="preloader-text">Warming up the stack<span class="dots"></span></p>
-      <p class="preloader-sub">No PR too heavy. No bug too stubborn.</p>
+      <p class="preloader-text">Loading portfolio<span class="dots"></span></p>
+      <p class="preloader-sub">Building something worth showing.</p>
     </div>
   </div>
 
   <!-- Progress bar -->
   <div class="scroll-progress" aria-hidden="true">
     <div class="scroll-progress-fill" id="scrollProgress"></div>
-    <span class="scroll-progress-label">Session Progress</span>
+    <span class="scroll-progress-label">Progress</span>
   </div>
 
   <!-- Navigation -->
@@ -48,8 +48,9 @@
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Stack</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certs</a></li>
         <li><a href="#typing">WPM</a></li>
-        <li><a href="#contact" class="nav-cta">Spot Me</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -58,57 +59,73 @@
     <!-- Hero -->
     <section class="hero" id="hero">
       <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-content">
-        <div class="hero-badge reveal">
-          <span class="pulse-dot"></span>
-          MSRIT · CSE Core · Class of 2030
-        </div>
-        <h1 class="hero-title reveal">
-          <span class="hero-line">I don't just</span>
-          <span class="hero-line hero-line-accent">write code.</span>
-          <span class="hero-line">I <em>rep</em> it.</span>
-        </h1>
-        <p class="hero-sub reveal">
-          Future software engineer who ships faster with AI spotters,
-          types at <strong>120 WPM</strong>, and treats every automation like a new PR.
-        </p>
-        <div class="hero-terminal reveal">
-          <div class="terminal-bar">
-            <span></span><span></span><span></span>
-            <code>kartavya@msrit ~ %</code>
+      <div class="hero-layout">
+        <div class="hero-content">
+          <div class="hero-badge reveal">
+            <span class="pulse-dot"></span>
+            MSRIT · CSE Core · Class of 2030
           </div>
-          <div class="terminal-body">
-            <p><span class="t-prompt">$</span> whoami</p>
-            <p class="t-output">Kartavya Pathak — Python dev, AI automation lifter and 120wpm typist</p>
-            <p><span class="t-prompt">$</span> cat mission.txt</p>
-            <p class="t-output">Automate everything. Outwork the experience gap.<em>or</em> edge cases.</p>
-            <p><span class="t-prompt">$</span> <span class="terminal-cursor" id="terminalCursor">_</span></p>
+          <h1 class="hero-title reveal">
+            <span class="hero-line">I don't just</span>
+            <span class="hero-line hero-line-accent">write code.</span>
+            <span class="hero-line">I <em>ship</em> it.</span>
+          </h1>
+          <p class="hero-sub reveal">
+            Future software engineer who ships faster with AI tools,
+            types at <strong>120 WPM</strong>, and automates everything worth automating.
+          </p>
+          <div class="hero-terminal reveal">
+            <div class="terminal-bar">
+              <span></span><span></span><span></span>
+              <code>kartavya@msrit ~ %</code>
+            </div>
+            <div class="terminal-body">
+              <p><span class="t-prompt">$</span> whoami</p>
+              <p class="t-output">Kartavya Pathak — Python dev, AI automation enthusiast, 120wpm typist</p>
+              <p><span class="t-prompt">$</span> cat mission.txt</p>
+              <p class="t-output">Automate everything. Outwork the experience gap. Ship daily.</p>
+              <p><span class="t-prompt">$</span> <span class="terminal-cursor" id="terminalCursor">_</span></p>
+            </div>
+          </div>
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-primary">See Projects</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
           </div>
         </div>
-        <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">See the Projects</a>
-          <a href="#contact" class="btn btn-ghost">Build Together</a>
+        <div class="hero-photo-wrap reveal">
+          <div class="hero-photo-frame">
+            <img
+              src="assets/profile.png"
+              alt="Kartavya Pathak — CSE student and software developer"
+              class="hero-photo"
+              width="400"
+              height="400"
+              loading="eager"
+            >
+            <div class="hero-photo-accent" aria-hidden="true"></div>
+          </div>
+          <p class="hero-photo-caption">Kartavya Pathak</p>
         </div>
       </div>
       <div class="hero-stats reveal">
         <div class="stat-card">
           <span class="stat-num" data-count="120">0</span>
           <span class="stat-unit">WPM</span>
-          <span class="stat-label">Finger PR</span>
+          <span class="stat-label">Typing Speed</span>
         </div>
         <div class="stat-card">
           <span class="stat-num">AI</span>
           <span class="stat-unit">×</span>
-          <span class="stat-label">Main Spotter</span>
+          <span class="stat-label">Automation</span>
         </div>
         <div class="stat-card">
           <span class="stat-num">∞</span>
-          <span class="stat-unit">reps</span>
-          <span class="stat-label">Automations queued</span>
+          <span class="stat-unit">ideas</span>
+          <span class="stat-label">In the pipeline</span>
         </div>
       </div>
       <div class="hero-scroll" aria-hidden="true">
-        <span></span>
+        <span>Scroll</span>
         <div class="scroll-line"></div>
       </div>
     </section>
@@ -126,31 +143,30 @@
             <h3>Freshman, Not Fresh Ideas</h3>
             <p>
               Starting CSE Core at <strong>MS Ramaiah Institute of Technology (MSRIT)</strong>.
-            
-             Efficiency is a mindset.
+              Efficiency is a mindset — not a seniority level.
             </p>
           </div>
           <div class="about-card reveal">
             <div class="about-icon">🤖</div>
-            <h3>AI Is My Spotter</h3>
+            <h3>AI-Powered Workflow</h3>
             <p>
               I use AI to automate the grind — scripts, workflows, and systems that let me
               punch above my experience weight class. While others debate tools, I'm already
-              <em>repping out</em> deliverables.
+              shipping deliverables.
             </p>
           </div>
           <div class="about-card reveal">
-            <div class="about-icon">🏋️</div>
-            <h3>Gym Enthusiast IRL</h3>
+            <div class="about-icon">⚡</div>
+            <h3>Discipline & Consistency</h3>
             <p>
-              Discipline in the squat rack translates to discipline in the codebase.
-              Consistency beats motivation. Progressive overload in the gym and — <em>in learning.</em> 
+              Whether it's learning a new framework or solving a hard problem, I show up daily.
+              Consistency beats motivation — progressive overload in learning, not just in life.
             </p>
           </div>
           <div class="about-card about-card-wide reveal">
             <blockquote class="about-quote">
               "I may not have years of work experience, but I know how to leverage AI to get more done
-              than people who've been in the industry for years. That's not arrogance — that's just facts"
+              than people who've been in the industry for years. That's not arrogance — that's just facts."
             </blockquote>
             <div class="about-tags">
               <span>Python</span>
@@ -169,49 +185,49 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-tag">02 / The Stack</span>
-          <h2>My Current<br><span class="text-accent">PR Board</span></h2>
-          <p class="section-desc">Personal records in progress. Always adding weight.</p>
+          <h2>Skills &<br><span class="text-accent">Technologies</span></h2>
+          <p class="section-desc">Always learning. Always building.</p>
         </div>
         <div class="pr-board">
           <div class="pr-item reveal" style="--delay: 0">
             <div class="pr-weight">🐍</div>
             <div class="pr-info">
               <h3>Python</h3>
-              <p>Backend logic, scripting, automation pipelines — my bread and peanut butter (bulk season).</p>
+              <p>Backend logic, scripting, automation pipelines — my go-to for getting things done.</p>
               <div class="pr-bar"><span style="--width: 85%"></span></div>
             </div>
-            <span class="pr-tag">Heavy Set</span>
+            <span class="pr-tag">Strong</span>
           </div>
           <div class="pr-item reveal" style="--delay: 1">
             <div class="pr-weight">🌐</div>
             <div class="pr-info">
               <h3>Web Development</h3>
-              <p>HTML, CSS, JavaScript — building interfaces that actually flex.</p>
+              <p>HTML, CSS, JavaScript — building interfaces that look and work great.</p>
               <div class="pr-bar"><span style="--width: 70%"></span></div>
             </div>
-            <span class="pr-tag">Working Set</span>
+            <span class="pr-tag">Growing</span>
           </div>
           <div class="pr-item reveal" style="--delay: 2">
             <div class="pr-weight">⚡</div>
             <div class="pr-info">
               <h3>AI Automation</h3>
-              <p>LLMs, agents, workflow automation — turning 8-hour tasks into 8-minute warm-ups.</p>
+              <p>LLMs, agents, workflow automation — turning 8-hour tasks into 8-minute workflows.</p>
               <div class="pr-bar"><span style="--width: 90%"></span></div>
             </div>
-            <span class="pr-tag">Max Effort</span>
+            <span class="pr-tag">Core</span>
           </div>
           <div class="pr-item reveal" style="--delay: 3">
             <div class="pr-weight">⌨️</div>
             <div class="pr-info">
               <h3>10-Finger Touch Typing</h3>
-              <p>120 WPM on Monkeytype.</p>
+              <p>120 WPM on Monkeytype — ideas to code, fast.</p>
               <div class="pr-bar"><span style="--width: 95%"></span></div>
             </div>
-            <span class="pr-tag">PR Locked</span>
+            <span class="pr-tag">120 WPM</span>
           </div>
         </div>
         <p class="skills-pun reveal">
-          💪  <strong>DSA and Machine learning PRs dropping soon</strong>
+          <strong>DSA and Machine Learning</strong> — coming soon to the stack.
         </p>
       </div>
     </section>
@@ -221,8 +237,8 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-tag">03 / Projects</span>
-          <h2>The Rack Is<br><span class="text-accent">Loading...</span></h2>
-          <p class="section-desc"></p>
+          <h2>Work in<br><span class="text-accent">Progress</span></h2>
+          <p class="section-desc">Building in public during my first year.</p>
         </div>
         <div class="project-rack">
           <article class="project-slot reveal">
@@ -232,8 +248,8 @@
             </div>
             <div class="slot-info">
               <h3>Project Slot #1</h3>
-              <p>Reserved for my first big build. Currently in the warm-up phase.</p>
-              <span class="slot-status">Resting between sets</span>
+              <p>Reserved for my first major build. Currently in development.</p>
+              <span class="slot-status">In progress</span>
             </div>
           </article>
           <article class="project-slot reveal">
@@ -243,8 +259,8 @@
             </div>
             <div class="slot-info">
               <h3>Project Slot #2</h3>
-              <p>AI automation project — details loading like a new 1RM attempt.</p>
-              <span class="slot-status">Programming the routine</span>
+              <p>AI automation project — details loading soon.</p>
+              <span class="slot-status">Planning phase</span>
             </div>
           </article>
           <article class="project-slot reveal">
@@ -254,15 +270,73 @@
             </div>
             <div class="slot-info">
               <h3>Project Slot #3</h3>
-              <p>Web app or tool — still picking the right tool for the job.</p>
-              <span class="slot-status">Chalk hands, thinking...</span>
+              <p>Web app or developer tool — still scoping requirements.</p>
+              <span class="slot-status">Ideation</span>
             </div>
           </article>
         </div>
         <p class="projects-note reveal">
-          🏗️ No cap — projects are coming. I'm in college now and building in public.
-          Follow along as I turn these empty slots into real <strong>pull requests</strong>.
+          Projects are on the way. Follow along as I turn these slots into real builds.
         </p>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section certifications" id="certifications">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">04 / Certifications</span>
+          <h2>Credentials &<br><span class="text-accent">Learning</span></h2>
+          <p class="section-desc">Continuous upskilling beyond the classroom.</p>
+        </div>
+        <div class="cert-grid">
+          <article class="cert-card reveal">
+            <div class="cert-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5"/><circle cx="12" cy="8" r="6"/><path d="M9 8h6M12 5v6"/></svg>
+            </div>
+            <div class="cert-body">
+              <span class="cert-category">Cybersecurity</span>
+              <h3>Introduction to Cybersecurity for Business</h3>
+              <p>Foundational cybersecurity concepts for business environments.</p>
+              <a href="assets/certs/cybersecurity-intro.pdf" class="cert-link" target="_blank" rel="noopener noreferrer">
+                View Certificate
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </a>
+            </div>
+          </article>
+          <article class="cert-card reveal">
+            <div class="cert-icon cert-icon-alt" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div class="cert-body">
+              <span class="cert-category">Ethical Hacking</span>
+              <h3>Techhacker Exploitation Course</h3>
+              <p>Practical exploitation techniques and security fundamentals.</p>
+              <a href="assets/certs/techhacker-exploitation.pdf" class="cert-link" target="_blank" rel="noopener noreferrer">
+                View Certificate
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </a>
+            </div>
+          </article>
+          <article class="cert-card cert-card-placeholder reveal">
+            <div class="cert-icon cert-icon-placeholder" aria-hidden="true">+</div>
+            <div class="cert-body">
+              <span class="cert-category">Coming Soon</span>
+              <h3>More Certifications</h3>
+              <p>Room for upcoming courses — cloud, DSA, and more on the roadmap.</p>
+              <span class="cert-link cert-link-muted">Slot available</span>
+            </div>
+          </article>
+          <article class="cert-card cert-card-placeholder reveal">
+            <div class="cert-icon cert-icon-placeholder" aria-hidden="true">+</div>
+            <div class="cert-body">
+              <span class="cert-category">Coming Soon</span>
+              <h3>More Certifications</h3>
+              <p>Always adding new credentials as I grow.</p>
+              <span class="cert-link cert-link-muted">Slot available</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -271,49 +345,68 @@
       <div class="container">
         <div class="typing-wrapper reveal">
           <div class="typing-content">
-            <span class="section-tag">04 / Keyboard Day</span>
-            <h2>120 WPM.<br><span class="text-accent">No Cheat Reps.</span></h2>
+            <span class="section-tag">05 / Keyboard</span>
+            <h2><span id="mtBestWpm">120</span> WPM.<br><span class="text-accent">Live from Monkeytype.</span></h2>
             <p>
-              10-finger touch typing at competition pace.
+              10-finger touch typing — personal bests pulled straight from my Monkeytype profile.
             </p>
             <div class="typing-stats">
               <div class="typing-stat">
-                <span class="typing-big" data-count="120">0</span>
-                <span>WPM</span>
+                <span class="typing-big" data-count="120">120</span>
+                <span>Best WPM</span>
               </div>
               <div class="typing-stat">
                 <span class="typing-big">10</span>
                 <span>Fingers</span>
               </div>
               <div class="typing-stat">
-                <span class="typing-big">0</span>
-                <span>Backspaces*</span>
+                <span class="typing-big">⌨️</span>
+                <span>Monkeytype</span>
               </div>
             </div>
-            <p class="typing-footnote">* aspirationally, on a good day</p>
             <a href="https://monkeytype.com/profile/YOUR_USERNAME" class="btn btn-primary btn-monkeytype" id="monkeytypeLink" target="_blank" rel="noopener noreferrer">
-              <span>View on Monkeytype</span>
+              <span>View Full Profile</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
             </a>
-            <p class="typing-hint"><code></code></p>
           </div>
-          <div class="typing-demo" aria-label="Typing speed demo">
-            <div class="keyboard-visual">
-              <div class="key-row">
-                <span class="key active">K</span><span class="key">A</span><span class="key active">R</span><span class="key">T</span>
-                <span class="key active">A</span><span class="key">V</span><span class="key active">Y</span><span class="key">A</span>
+          <div class="mt-widget mt-loading" id="monkeytypeWidget" aria-label="Monkeytype profile stats">
+            <div class="mt-widget-header">
+              <div class="mt-logo" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M8 16h8"/></svg>
               </div>
-              <div class="key-row">
-                <span class="key">P</span><span class="key active">A</span><span class="key">T</span><span class="key active">H</span>
-                <span class="key active">A</span><span class="key">K</span>
+              <div class="mt-header-text">
+                <span class="mt-username">kartavya40</span>
+                <span class="mt-label">monkeytype.com</span>
               </div>
-              <div class="wpm-live">
-                <span id="liveWpm">120</span>
-                <small>wpm</small>
-              </div>
+              <span class="mt-live-badge"><span class="pulse-dot"></span> Live</span>
             </div>
-            <div class="typing-stream" id="typingStream">
-              <span>automate</span><span>efficiency</span><span>python</span><span>msrit</span><span>120wpm</span><span>spotter</span><span>deploy</span><span>grind</span>
+            <div class="mt-tabs">
+              <button type="button" class="mt-tab active" data-mode="time">Time</button>
+              <button type="button" class="mt-tab" data-mode="words">Words</button>
+            </div>
+            <div class="mt-pb-grid">
+              <div class="mt-skeleton"></div>
+              <div class="mt-skeleton"></div>
+              <div class="mt-skeleton"></div>
+              <div class="mt-skeleton"></div>
+            </div>
+            <div class="mt-meta">
+              <div class="mt-meta-item">
+                <span class="mt-meta-val mt-tests">—</span>
+                <span class="mt-meta-label">Tests</span>
+              </div>
+              <div class="mt-meta-item">
+                <span class="mt-meta-val mt-time">—</span>
+                <span class="mt-meta-label">Typed</span>
+              </div>
+              <div class="mt-meta-item">
+                <span class="mt-meta-val mt-streak">—</span>
+                <span class="mt-meta-label">Streak</span>
+              </div>
+              <div class="mt-meta-item">
+                <span class="mt-meta-val mt-xp">—</span>
+                <span class="mt-meta-label">XP</span>
+              </div>
             </div>
           </div>
         </div>
@@ -341,25 +434,44 @@
             </div>
             <div class="edu-item">
               <span class="edu-label">Internship</span>
-              <span class="edu-value edu-muted">Hunting season — open to opportunities</span>
+              <span class="edu-value edu-muted">Open to opportunities</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Beyond Code — subtle fitness blog mention -->
+    <aside class="section aside-section" id="beyond-code">
+      <div class="container">
+        <div class="aside-card reveal">
+          <div class="aside-content">
+            <span class="section-tag">Outside the IDE</span>
+            <h2>Beyond Code</h2>
+            <p>
+              When I'm not writing Python or automating workflows, I occasionally write about
+              fitness on a personal blog — a side hobby, not my career focus.
+            </p>
+          </div>
+          <a href="https://gym24-7.blogspot.com" class="aside-link" id="fitnessBlogLink" target="_blank" rel="noopener noreferrer">
+            <span class="aside-link-label">gym24-7.blogspot.com</span>
+            <span class="aside-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
     <!-- Contact -->
     <section class="section contact" id="contact">
       <div class="container">
         <div class="contact-wrapper reveal">
           <div class="contact-content">
-            <span class="section-tag">05 / Spot Me</span>
-            <h2>Let's Build<br><span class="text-accent">Something Heavy.</span></h2>
+            <span class="section-tag">06 / Contact</span>
+            <h2>Let's Build<br><span class="text-accent">Something Great.</span></h2>
             <p>
               Looking for collaborators, mentors, or anyone who thinks AI + hustle beats
-              years of coasting. Drop a line — I respond faster than my typing speed.*
+              years of coasting. Drop a line — I'll get back to you quickly.
             </p>
-            <p class="contact-footnote">* okay, maybe not <em>that</em> fast, but I'll get back to you</p>
           </div>
           <div class="contact-links">
             <a href="mailto:hello@kartavyapathak.com" class="contact-link">
@@ -386,14 +498,55 @@
           </div>
         </div>
         <footer class="footer reveal">
-          <p class="footer-pun">Built with progressive overload — in code and in life.</p>
+          <p class="footer-pun">Built with curiosity and consistency.</p>
           <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
         </footer>
       </div>
     </section>
   </main>
 
+  <!-- AI Chatbot -->
+  <div class="chatbot" id="chatbot">
+    <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Kartavya's AI assistant">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-header-avatar" aria-hidden="true">AI</div>
+          <div>
+            <strong>Kartavya's Assistant</strong>
+            <small>Ask about me or general tech</small>
+          </div>
+        </div>
+        <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg chat-msg-bot">
+          <div class="chat-avatar" aria-hidden="true">AI</div>
+          <div class="chat-bubble">
+            Hey! I'm Kartavya's AI assistant. Ask me about his skills, education, projects, certifications, or how to reach him.
+          </div>
+        </div>
+      </div>
+      <div class="chat-suggestions-wrap">
+        <button type="button" class="chat-suggestion">What are his skills?</button>
+        <button type="button" class="chat-suggestion">Tell me about Kartavya</button>
+        <button type="button" class="chat-suggestion">How to contact?</button>
+      </div>
+      <form class="chat-form" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off" aria-label="Chat message">
+        <button type="submit" class="chat-send" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+    </div>
+    <button class="chat-toggle" id="chatToggle" aria-label="Open chat" aria-expanded="false">
+      <svg class="chat-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <svg class="chat-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/monkeytype.js"></script>
+  <script src="js/chatbot.js"></script>
 </body>
 </html>
