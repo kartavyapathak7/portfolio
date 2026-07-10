@@ -1,0 +1,37 @@
+  <div class="chatbot" id="chatbot">
+    <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Kartavya's AI assistant">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-header-avatar" aria-hidden="true">AI</div>
+          <div>
+            <strong>Kartavya's Assistant</strong>
+            <small>Ask about me or general tech</small>
+          </div>
+        </div>
+        <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg chat-msg-bot">
+          <div class="chat-avatar" aria-hidden="true">AI</div>
+          <div class="chat-bubble">
+            Hey! I'm Kartavya's AI assistant. Ask me about his skills, education, projects, certifications, or how to reach him.
+          </div>
+        </div>
+      </div>
+      <div class="chat-suggestions-wrap">
+        <button type="button" class="chat-suggestion">What are his skills?</button>
+        <button type="button" class="chat-suggestion">Tell me about Kartavya</button>
+        <button type="button" class="chat-suggestion">How to contact?</button>
+      </div>
+      <form class="chat-form" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off" aria-label="Chat message">
+        <button type="submit" class="chat-send" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+    </div>
+    <button class="chat-toggle" id="chatToggle" aria-label="Open chat" aria-expanded="false">
+      <svg class="chat-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <svg class="chat-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
