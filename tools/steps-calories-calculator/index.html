@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert daily steps into estimated calories burned based on your body weight.">
+  <title>Steps to Calories Calculator | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied!</div>
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container" style="padding-bottom: 100px;">
+    <section class="calc-hero">
+      <span class="calc-tag">Activity</span>
+      <h1>Steps to Calories Calculator</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">See how many calories your daily steps burn and what that means for your goals.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Your Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); runCalculator();">
+          <div class="form-group">
+            <label class="form-label">Weight</label>
+            <div class="weight-input-wrap">
+              <input type="number" id="weight" class="input-field" min="30" max="300" value="72" required>
+              <div class="unit-switch" id="weightUnitToggle">
+                <button type="button" class="unit-btn active" onclick="state.weightUnit='kg';setUnit('weightUnitToggle','kg')">kg</button>
+                <button type="button" class="unit-btn" onclick="state.weightUnit='lbs';setUnit('weightUnitToggle','lbs')">lbs</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Daily Steps</label>
+            <input type="number" id="steps" class="input-field" min="1000" max="50000" value="10000" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Walking Intensity</label>
+            <select id="intensity" class="input-field">
+              <option value="1">Slow / Casual</option>
+              <option value="1.2" selected>Moderate Pace</option>
+              <option value="1.4">Brisk / Incline</option>
+            </select>
+          </div>
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate</button>
+            <button type="button" class="btn-reset" onclick="resetCalculator()">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">👟</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 260px;">Enter your details and hit calculate for personalized results.</p>
+          </div>
+        </div>
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Your Results</span>
+            <div class="result-val"><span id="mainResult">0</span><span class="result-unit" id="mainUnit"></span></div>
+          </div>
+          <div class="result-list" id="resultRows"></div>
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyReport(lastReport)">Copy Results</button>
+            <button class="btn-action" onclick="downloadReport('steps-calories-calculator-report.txt', lastReport)">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="calc-disclaimer">
+      <p><strong>Disclaimer:</strong> These calculators provide general fitness and nutrition estimates based on sports science literature. They are not medical advice. Consult a healthcare professional before making major diet or training changes.</p>
+    </section>
+  </main>
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+  <script src="/tools/js/calculator-common.js"></script>
+  <script>
+
+    const state = { weightUnit: 'kg' };
+    let lastReport = '';
+
+    function runCalculator() {
+      const weight = toKg(+document.getElementById('weight').value, state.weightUnit);
+      const steps = +document.getElementById('steps').value;
+      const intensity = +document.getElementById('intensity').value;
+      const calories = Math.round(calcStepsCalories(steps, weight) * intensity);
+      const distance = Math.round(steps * 0.000762 * 10) / 10;
+      const minutes = Math.round(steps / 100);
+
+      document.getElementById('mainResult').textContent = calories;
+      document.getElementById('mainUnit').textContent = ' kcal burned';
+      renderResultRows([
+        { label: 'Distance Covered', value: distance + ' km' },
+        { label: 'Walking Time (est.)', value: minutes + ' min' },
+        { label: 'Calories per 1k Steps', value: Math.round(calories / steps * 1000) + ' kcal' },
+        { label: 'Weekly Total (7 days)', value: (calories * 7) + ' kcal' }
+      ]);
+
+      const summary = `Your ${steps.toLocaleString()} daily steps burn roughly ${calories} kcal — equivalent to about ${Math.round(calories/77)} minutes of moderate cardio. ${steps >= 10000 ? 'Hitting 10k+ steps is excellent for cardiovascular health and NEAT.' : 'Increasing steps to 8,000–10,000 can meaningfully boost daily energy expenditure without formal cardio.'} This adds up to ~${calories*7} kcal per week.`;
+      renderSummary(summary);
+      lastReport = `Steps: ${steps}\nCalories: ${calories}\nDistance: ${distance}km\n\n${summary}`;
+      showResults();
+    }
+
+    function resetCalculator() {
+      document.getElementById('calcForm').reset();
+      state.weightUnit = 'kg';
+      setUnit('weightUnitToggle', 'kg');
+      resetResults();
+    }
+    window.runCalculator = runCalculator;
+
+  </script>
+</body>
+</html>

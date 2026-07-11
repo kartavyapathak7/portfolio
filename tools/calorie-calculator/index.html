@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your daily calorie needs (TDEE) for fat loss, maintenance, or muscle gain.">
+  <title>Calorie Calculator | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied!</div>
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container" style="padding-bottom: 100px;">
+    <section class="calc-hero">
+      <span class="calc-tag">TDEE & Energy</span>
+      <h1>Calorie Calculator</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">Estimate maintenance calories and goal-specific targets using the Mifflin-St Jeor equation.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Your Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); runCalculator();">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Age</label>
+              <input type="number" id="age" class="input-field" min="15" max="80" value="22" required>
+            </div>
+            <div class="form-group">
+            <span class="form-label">Gender</span>
+            <div class="toggle-group" id="genderToggle">
+              <button type="button" class="toggle-btn active" onclick="state.gender='male';setToggle('genderToggle','male',['male','female'])">♂ Male</button>
+              <button type="button" class="toggle-btn" onclick="state.gender='female';setToggle('genderToggle','female',['male','female'])">♀ Female</button>
+            </div>
+          </div>
+          </div>
+                    <div class="form-group">
+            <label class="form-label">Weight</label>
+            <div class="weight-input-wrap">
+              <input type="number" id="weight" class="input-field" min="30" max="300" value="72" required>
+              <div class="unit-switch" id="weightUnitToggle">
+                <button type="button" class="unit-btn active" onclick="state.weightUnit='kg';setUnit('weightUnitToggle','kg')">kg</button>
+                <button type="button" class="unit-btn" onclick="state.weightUnit='lbs';setUnit('weightUnitToggle','lbs')">lbs</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Height (cm)</label>
+            <input type="number" id="height" class="input-field" min="120" max="230" value="176" required>
+          </div>
+                    <div class="form-group">
+            <label class="form-label">Activity Level</label>
+            <select id="activity" class="input-field">
+              <option value="sedentary">Sedentary</option>
+              <option value="light">Lightly Active</option>
+              <option value="moderate" selected>Moderately Active</option>
+              <option value="heavy">Very Active</option>
+              <option value="athlete">Athlete</option>
+            </select>
+          </div>
+                    <div class="form-group">
+            <label class="form-label">Goal</label>
+            <select id="goal" class="input-field">
+              <option value="fat_loss">Fat Loss</option>
+              <option value="maintenance" selected>Maintenance</option>
+              <option value="muscle_gain">Muscle Gain</option>
+            </select>
+          </div>
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate</button>
+            <button type="button" class="btn-reset" onclick="resetCalculator()">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">🔥</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 260px;">Enter your details and hit calculate for personalized results.</p>
+          </div>
+        </div>
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Your Results</span>
+            <div class="result-val"><span id="mainResult">0</span><span class="result-unit" id="mainUnit"></span></div>
+          </div>
+          <div class="result-list" id="resultRows"></div>
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyReport(lastReport)">Copy Results</button>
+            <button class="btn-action" onclick="downloadReport('calorie-calculator-report.txt', lastReport)">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="calc-disclaimer">
+      <p><strong>Disclaimer:</strong> These calculators provide general fitness and nutrition estimates based on sports science literature. They are not medical advice. Consult a healthcare professional before making major diet or training changes.</p>
+    </section>
+  </main>
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+  <script src="/tools/js/calculator-common.js"></script>
+  <script>
+
+    const state = { gender: 'male', weightUnit: 'kg' };
+    let lastReport = '';
+
+    function runCalculator() {
+      const age = +document.getElementById('age').value;
+      const weight = toKg(+document.getElementById('weight').value, state.weightUnit);
+      const height = +document.getElementById('height').value;
+      const activity = document.getElementById('activity').value;
+      const goal = document.getElementById('goal').value;
+      const bmr = Math.round(calcBMR(age, state.gender, weight, height));
+      const tdee = calcTDEE(bmr, activity);
+      const fatLoss = Math.max(1200, tdee - 500);
+      const muscleGain = tdee + 300;
+      const target = goal === 'fat_loss' ? fatLoss : goal === 'muscle_gain' ? muscleGain : tdee;
+      const protein = calcProteinTarget(weight, goal, activity, 'optimal');
+      const water = calcWaterLiters(weight, activity, 'normal');
+
+      document.getElementById('mainResult').textContent = target;
+      document.getElementById('mainUnit').textContent = ' kcal/day';
+      renderResultRows([
+        { label: 'Maintenance Calories', value: tdee + ' kcal/day' },
+        { label: 'Fat Loss Target', value: fatLoss + ' kcal/day' },
+        { label: 'Muscle Gain Target', value: muscleGain + ' kcal/day' },
+        { label: 'Protein Goal', value: protein + ' g/day' },
+        { label: 'Water Goal', value: water + ' L/day' }
+      ]);
+
+      let summary = '';
+      if (goal === 'fat_loss') {
+        summary = `Based on your inputs, a moderate calorie deficit of about ${tdee - fatLoss} kcal/day should support steady fat loss while helping preserve muscle if you meet your protein target of ${protein}g. Splitting protein across 3–5 meals can make it easier to reach your daily goal. Aim for ${water}L of water daily to stay hydrated during your cut.`;
+      } else if (goal === 'muscle_gain') {
+        summary = `Your maintenance is around ${tdee} kcal/day. A ${muscleGain - tdee} kcal surplus supports lean muscle gain without excessive fat. Pair this with ${protein}g protein daily and progressive resistance training 3–5x per week for best results.`;
+      } else {
+        summary = `At your activity level, ${tdee} kcal/day should maintain your current weight. Keep protein around ${protein}g to support recovery, and drink roughly ${water}L of water daily. Adjust by ±200 kcal if weight drifts over 2–3 weeks.`;
+      }
+      renderSummary(summary);
+      lastReport = `Calorie Calculator Results\nMaintenance: ${tdee} kcal/day\nFat Loss: ${fatLoss} kcal/day\nMuscle Gain: ${muscleGain} kcal/day\nProtein: ${protein} g/day\nWater: ${water} L/day\n\n${summary}`;
+      showResults();
+    }
+
+    function resetCalculator() {
+      document.getElementById('calcForm').reset();
+      state.gender = 'male'; state.weightUnit = 'kg';
+      setToggle('genderToggle', 'male', ['male','female']);
+      setUnit('weightUnitToggle', 'kg');
+      resetResults();
+    }
+    window.runCalculator = runCalculator;
+
+  </script>
+</body>
+</html>

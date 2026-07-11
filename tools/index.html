@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online fitness and health calculators built by Kartavya Pathak. Fast, mobile-friendly, science-based tools with zero ads.">
+  <title>Online Tools Hub | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    .tools-hero {
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+    .tools-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(200, 255, 0, 0.2);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .tools-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 0.9;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .tools-hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(200, 255, 0, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200, 255, 0, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .tool-card:hover::before { opacity: 1; }
+    .tool-icon { font-size: 2.5rem; line-height: 1; }
+    .tool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tool-badge {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tool-card h3 { font-size: 1.35rem; font-weight: 600; }
+    .tool-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+    .tool-btn {
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all var(--transition);
+      font-size: 0.95rem;
+    }
+    .tool-btn:hover {
+      box-shadow: 0 0 16px rgba(200, 255, 0, 0.35);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="tools-hero">
+      <div class="tools-hero-tag">
+        <span class="pulse-dot" style="background-color: var(--accent);"></span>
+        100% Free · No Sign Up Required
+      </div>
+      <h1>FREE ONLINE TOOLS</h1>
+      <p>A growing suite of lightweight fitness, macro, and productivity calculators designed to run directly in your browser with zero bloat.</p>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="tools-grid">
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">🥩</span><span class="tool-badge">Active</span></div>
+          <h3>Protein Intake Calculator</h3>
+          <p>Find your scientifically recommended daily protein target based on weight, activity level, and sports goals.</p>
+          <a href="/tools/protein-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">🔥</span><span class="tool-badge">Active</span></div>
+          <h3>Calorie Calculator</h3>
+          <p>Estimate daily energy expenditure (TDEE) and target calories for fat loss, maintenance, or muscle gain.</p>
+          <a href="/tools/calorie-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">📊</span><span class="tool-badge">Active</span></div>
+          <h3>Macro Calculator</h3>
+          <p>Optimize your intake ratio of protein, carbs, and fats tailored to your specific training style.</p>
+          <a href="/tools/macro-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">💧</span><span class="tool-badge">Active</span></div>
+          <h3>Water Intake Calculator</h3>
+          <p>Calculate your daily hydration goal based on body weight, activity, and climate.</p>
+          <a href="/tools/water-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">🏋️</span><span class="tool-badge">Active</span></div>
+          <h3>One Rep Max Calculator</h3>
+          <p>Estimate your 1RM and training zones from any weight and rep combination.</p>
+          <a href="/tools/one-rep-max-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">😴</span><span class="tool-badge">Active</span></div>
+          <h3>Sleep Calculator</h3>
+          <p>Find optimal bedtimes and wake times aligned with 90-minute sleep cycles.</p>
+          <a href="/tools/sleep-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">👟</span><span class="tool-badge">Active</span></div>
+          <h3>Steps to Calories Calculator</h3>
+          <p>Convert daily steps into estimated calories burned based on your body weight.</p>
+          <a href="/tools/steps-calories-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">📏</span><span class="tool-badge">Active</span></div>
+          <h3>BMI + Body Fat Calculator</h3>
+          <p>Calculate BMI and estimate body fat percentage using the US Navy method.</p>
+          <a href="/tools/bmi-bodyfat-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">💪</span><span class="tool-badge">Active</span></div>
+          <h3>Muscle Gain Timeline</h3>
+          <p>Estimate realistic timelines for building muscle based on training experience.</p>
+          <a href="/tools/muscle-gain-timeline/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">📉</span><span class="tool-badge">Active</span></div>
+          <h3>Body Fat Progress Tracker</h3>
+          <p>Track how long it will take to reach your target body fat percentage.</p>
+          <a href="/tools/body-fat-tracker/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">🎯</span><span class="tool-badge">Active</span></div>
+          <h3>Fitness Goal Planner</h3>
+          <p>Get a complete daily plan covering calories, macros, hydration, and training.</p>
+          <a href="/tools/fitness-goal-planner/" class="tool-btn">Open Calculator →</a>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-header"><span class="tool-icon">🔲</span><span class="tool-badge">Active</span></div>
+          <h3>How Long Until Visible Abs?</h3>
+          <p>Estimate the timeline to visible abs based on your current body fat.</p>
+          <a href="/tools/visible-abs-calculator/" class="tool-btn">Open Calculator →</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container" style="margin-top: 60px; padding-bottom: 40px; text-align: center;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+
+  <script src="/js/config.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    const cursorGlow = document.getElementById('cursorGlow');
+    let glowRAF;
+    document.addEventListener('mousemove', (e) => {
+      cancelAnimationFrame(glowRAF);
+      glowRAF = requestAnimationFrame(() => {
+        if (cursorGlow) {
+          cursorGlow.style.left = e.clientX + 'px';
+          cursorGlow.style.top = e.clientY + 'px';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your optimal daily protein intake with sports science formulas. Free, fast and mobile-responsive protein calculator.">
+  <title>Science-Based Protein Calculator | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    /* Calculator Layout and Components Custom Styling */
+    .calc-hero {
+      padding: 130px 0 40px;
+      text-align: center;
+    }
+    .calc-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 0.95;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+    .calc-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 992px) {
+      .calc-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Card Styles */
+    .calc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+    }
+    .calc-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .calc-kbd {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+    
+    /* Form inputs */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .input-field {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    
+    /* Toggle Switch Group */
+    .toggle-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .toggle-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+    }
+    .toggle-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    
+    /* Weight Input with Unit Selector */
+    .weight-input-wrap {
+      display: flex;
+      gap: 8px;
+    }
+    .unit-switch {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .unit-btn {
+      background: var(--bg);
+      border: none;
+      color: var(--text-muted);
+      padding: 0 16px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      transition: all var(--transition);
+    }
+    .unit-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    
+    /* Action Buttons */
+    .calc-btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn-calc {
+      flex: 1;
+      background: linear-gradient(135deg, var(--accent), var(--orange));
+      color: var(--bg);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      font-size: 0.95rem;
+    }
+    .btn-calc:hover {
+      box-shadow: 0 0 20px rgba(200, 255, 0, 0.3);
+      transform: translateY(-1px);
+    }
+    .btn-reset {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-size: 0.9rem;
+    }
+    .btn-reset:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+    
+    /* Result Display Cards */
+    .result-empty {
+      border: 1px dashed var(--border);
+      background: rgba(22, 22, 26, 0.3);
+      height: 100%;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+      text-align: center;
+      padding: 32px;
+    }
+    
+    .result-content {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .result-large {
+      text-align: left;
+    }
+    .result-val {
+      font-family: var(--font-display);
+      font-size: 5.5rem;
+      color: var(--accent);
+      line-height: 0.85;
+      display: flex;
+      align-items: baseline;
+    }
+    .result-unit {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      margin-left: 8px;
+    }
+    
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .result-subcard {
+      background: rgba(8, 8, 10, 0.5);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: var(--radius-md);
+    }
+    .subcard-val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    
+    /* Custom Progress Bar styling */
+    .progress-wrap {
+      margin-top: 8px;
+    }
+    .progress-bar-container {
+      height: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 8px;
+      position: relative;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--orange));
+      border-radius: 10px;
+      transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+    
+    /* Pill Tags */
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag-pill {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag-pill-accent {
+      background: var(--accent-dim);
+      border-color: rgba(200, 255, 0, 0.2);
+      color: var(--accent);
+    }
+    
+    /* Result Actions */
+    .result-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .btn-action {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      transition: all var(--transition);
+    }
+    .btn-action:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    /* Food recommendations section */
+    .food-section {
+      display: none;
+      margin-top: 48px;
+    }
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .food-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color var(--transition);
+    }
+    .food-card:hover {
+      border-color: rgba(200, 255, 0, 0.2);
+    }
+    .food-emoji {
+      font-size: 2rem;
+    }
+    .food-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .food-prot {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+    
+    /* FAQ Accordion Styling */
+    .faq-section {
+      margin-top: 64px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .faq-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      text-align: left;
+      padding: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+    }
+    .faq-trigger:hover {
+      color: var(--accent);
+    }
+    .faq-icon {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      color: var(--accent);
+    }
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .faq-content {
+      padding: 0 20px 20px 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    
+    /* Toast feedback notification */
+    .toast-notif {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(120%);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .toast-notif.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied to clipboard!</div>
+
+  <!-- Header -->
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container" style="padding-bottom: 100px;">
+    <!-- Hero Header -->
+    <section class="calc-hero">
+      <span class="calc-tag">Science-Based Calculation</span>
+      <h1>Protein Intake Calculator</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">Find your optimal daily protein target in seconds. Tailored to your weight, goals, and training style.</p>
+    </section>
+
+    <!-- Calculator Interface Grid -->
+    <section class="calc-layout">
+      <!-- Input Panel -->
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Personal Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); calculate();">
+          <!-- Age & Gender -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="age" class="form-label">Age</label>
+              <input type="number" id="age" min="12" max="100" class="input-field" placeholder="e.g. 24" required value="22">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <span class="form-label">Gender</span>
+              <div class="toggle-group" id="genderToggle">
+                <button type="button" class="toggle-btn active" onclick="setGender('male')">♂ Male</button>
+                <button type="button" class="toggle-btn" onclick="setGender('female')">♀ Female</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weight Input -->
+          <div class="form-group">
+            <label for="weight" class="form-label">Weight</label>
+            <div class="weight-input-wrap">
+              <input type="number" id="weight" min="10" max="500" class="input-field" placeholder="e.g. 70" required value="72">
+              <div class="unit-switch" id="weightUnitToggle">
+                <button type="button" class="unit-btn active" onclick="setWeightUnit('kg')">kg</button>
+                <button type="button" class="unit-btn" onclick="setWeightUnit('lbs')">lbs</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Height (cm) -->
+          <div class="form-group">
+            <label for="height" class="form-label">Height (cm)</label>
+            <input type="number" id="height" min="100" max="250" class="input-field" placeholder="e.g. 175" required value="176">
+          </div>
+
+          <!-- Activity Level -->
+          <div class="form-group">
+            <label for="activity" class="form-label">Activity Level</label>
+            <select id="activity" class="input-field" style="background-image: none; cursor: pointer;">
+              <option value="sedentary">Sedentary (desk job, no formal exercise)</option>
+              <option value="light">Lightly Active (exercise 1-2 days/week)</option>
+              <option value="moderate" selected>Moderately Active (exercise 3-5 days/week)</option>
+              <option value="heavy">Very Active (exercise 6-7 days/week)</option>
+              <option value="athlete">Athlete / Heavy Laborer (twice daily workouts)</option>
+            </select>
+          </div>
+
+          <!-- Fitness Goal -->
+          <div class="form-group">
+            <label for="goal" class="form-label">Fitness Goal</label>
+            <select id="goal" class="input-field" style="background-image: none; cursor: pointer;">
+              <option value="fat_loss">Lose Fat / Cut</option>
+              <option value="maintenance">Maintenance</option>
+              <option value="muscle_gain" selected>Gain Muscle / Bulk</option>
+            </select>
+          </div>
+
+          <!-- Protein Preference -->
+          <div class="form-group">
+            <label for="preference" class="form-label">Protein Preference</label>
+            <select id="preference" class="input-field" style="background-image: none; cursor: pointer;">
+              <option value="minimum">Minimum Requirement (0.8g per kg)</option>
+              <option value="optimal" selected>Optimal Sports Intake (scientific recommendations)</option>
+              <option value="high">High Performance Target (2.2g per kg)</option>
+            </select>
+          </div>
+
+          <!-- Actions -->
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate Target</button>
+            <button type="button" class="btn-reset" onclick="resetForm()">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Output Panel -->
+      <div style="height: 100%;">
+        <!-- Initial Empty State -->
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">🥩</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 250px;">Enter your stats on the left and click calculate to review targets.</p>
+          </div>
+        </div>
+
+        <!-- Populated Results Card -->
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Optimal Daily Intake</span>
+            <div class="result-val">
+              <span id="proteinVal">0</span>
+              <span class="result-unit">g / day</span>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="result-grid">
+            <div class="result-subcard">
+              <span class="form-label" style="font-size: 0.6rem;">Per Meal Target</span>
+              <div class="subcard-val"><span id="perMealVal">0</span>g</div>
+              <span class="form-label" style="font-size: 0.55rem; margin-top: 4px; letter-spacing: 0;">Split over 4 meals</span>
+            </div>
+            <div class="result-subcard">
+              <span class="form-label" style="font-size: 0.6rem;">Per kg Ratio</span>
+              <div class="subcard-val"><span id="ratioVal">0</span>g/kg</div>
+              <span class="form-label" style="font-size: 0.55rem; margin-top: 4px; letter-spacing: 0;">Of bodyweight</span>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="tag-container">
+            <span id="tagGoal" class="tag-pill tag-pill-accent">Muscle Gain</span>
+            <span id="tagActivity" class="tag-pill">Moderate Exercise</span>
+            <span id="tagPreference" class="tag-pill">Optimal Intake</span>
+          </div>
+
+          <!-- Intake Scale Progress Bar -->
+          <div class="progress-wrap">
+            <div class="progress-labels">
+              <span>80g (Sedentary Min)</span>
+              <span>220g (High Performance)</span>
+            </div>
+            <div class="progress-bar-container">
+              <div id="progressBar" class="progress-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Personalized Summary -->
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+
+          <!-- Actions -->
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyResults()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              Copy Text
+            </button>
+            <button class="btn-action" onclick="downloadTxt()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Food Recommendations Section -->
+    <section id="foodSection" class="food-section reveal">
+      <h2 style="font-family: var(--font-display); font-size: 2.2rem; text-align: center;">How to Hit Your Protein Target</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Combine these high-quality source recommendations to hit your target of <strong class="text-accent" id="foodTargetLabel">0g</strong>.</p>
+      <div class="food-grid">
+        <div class="food-card">
+          <span class="food-emoji">🍗</span>
+          <div>
+            <div class="food-name">Chicken Breast</div>
+            <div class="food-prot">31g protein / 100g</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <span class="food-emoji">🥚</span>
+          <div>
+            <div class="food-name">Whole Eggs</div>
+            <div class="food-prot">6g protein / large egg</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <span class="food-emoji">🥛</span>
+          <div>
+            <div class="food-name">Whey Protein</div>
+            <div class="food-prot">25g protein / scoop</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <span class="food-emoji">🥛</span>
+          <div>
+            <div class="food-name">Greek Yogurt</div>
+            <div class="food-prot">10g protein / 100g</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <span class="food-emoji">🫘</span>
+          <div>
+            <div class="food-name">Soya Chunks</div>
+            <div class="food-prot">52g protein / 100g</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <span class="food-emoji">🧀</span>
+          <div>
+            <div class="food-name">Paneer (Cottage Cheese)</div>
+            <div class="food-prot">18g protein / 100g</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <span class="food-emoji">🥜</span>
+          <div>
+            <div class="food-name">Tofu (Soy Cheese)</div>
+            <div class="food-prot">8g protein / 100g</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq-section reveal">
+      <h2 style="font-family: var(--font-display); font-size: 2.2rem; text-align: center;">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>How much protein do I need?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-content">
+              Standard guidelines recommend 0.8g per kg for sedentary adults. However, current sports science research recommends 1.4 to 2.2g per kg of bodyweight for active individuals, gym-goers, and athletes to maintain lean mass and recover from workouts.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>What happens if I eat more protein?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-content">
+              Eating higher amounts of protein supports muscle synthesis, increases satiety (fullness), and slightly boosts metabolic rate via the thermic effect of food. Research shows that intake up to 2.2g per kg is completely safe for healthy individuals.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span>Can I build muscle on a low protein diet?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-panel">
+            <div class="faq-content">
+              While you can make minor gains, building muscle requires a positive nitrogen balance, which is only possible with adequate protein intake (at least 1.4-1.6g per kg of bodyweight).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section style="margin-top: 48px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: rgba(8, 8, 10, 0.3);">
+      <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+        <strong>Disclaimer:</strong> This calculator provides general nutritional guidelines based on current sports science literature. It is not intended to replace medical advice. Consult a healthcare professional or registered dietitian before making drastic changes to your diet.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+
+  <script src="/js/config.js"></script>
+  <script>
+    // State management
+    let gender = 'male';
+    let weightUnit = 'kg';
+    let calculatedTarget = 0;
+    let calculatedRatio = 0;
+
+    // Load initial layout configs
+    window.addEventListener('load', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+
+    // Custom menu toggles
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+
+    // Gender Switcher
+    function setGender(val) {
+      gender = val;
+      const btns = document.querySelectorAll('#genderToggle .toggle-btn');
+      btns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Weight Unit Switcher
+    function setWeightUnit(val) {
+      weightUnit = val;
+      const btns = document.querySelectorAll('#weightUnitToggle .unit-btn');
+      btns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Calculation core
+    function calculate() {
+      const age = parseInt(document.getElementById('age').value);
+      let weight = parseFloat(document.getElementById('weight').value);
+      const height = parseInt(document.getElementById('height').value);
+      const activity = document.getElementById('activity').value;
+      const goal = document.getElementById('goal').value;
+      const preference = document.getElementById('preference').value;
+
+      if (weightUnit === 'lbs') {
+        weight = weight / 2.20462; // convert to kg internally
+      }
+
+      // 1. Establish core target multiplier (g/kg of bodyweight)
+      let multiplier = 1.6; // baseline optimal target for active individuals
+
+      if (preference === 'minimum') {
+        multiplier = 0.8;
+      } else if (preference === 'high') {
+        multiplier = 2.2;
+      } else {
+        // Optimal preference adjusts according to goal & activity
+        if (goal === 'fat_loss') {
+          // Under energy deficit, protect lean muscle with higher intake
+          multiplier = (activity === 'heavy' || activity === 'athlete') ? 2.2 : 2.0;
+        } else if (goal === 'muscle_gain') {
+          multiplier = (activity === 'heavy' || activity === 'athlete') ? 2.0 : 1.8;
+        } else {
+          // Maintenance goal
+          if (activity === 'sedentary') multiplier = 1.0;
+          else if (activity === 'light') multiplier = 1.3;
+          else if (activity === 'moderate') multiplier = 1.6;
+          else multiplier = 1.8;
+        }
+      }
+
+      // Calculate final target
+      let target = Math.round(weight * multiplier);
+
+      // Sanity checks on target bounds
+      if (target < 50) target = 50;
+      if (target > 350) target = 350;
+
+      calculatedTarget = target;
+      calculatedRatio = Math.round(multiplier * 10) / 10;
+
+      // Update UI components
+      displayResults(target, calculatedRatio, goal, activity, preference);
+    }
+
+    // Dynamic numeric animations with easing
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+        obj.innerHTML = Math.floor(eased * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerHTML = end;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Render results
+    function displayResults(target, ratio, goal, activity, preference) {
+      document.getElementById('resultEmpty').style.display = 'none';
+      const rCard = document.getElementById('resultCard');
+      rCard.style.display = 'flex';
+
+      // Animate numbers
+      animateValue(document.getElementById('proteinVal'), 0, target, 800);
+      animateValue(document.getElementById('perMealVal'), 0, Math.round(target / 4), 800);
+      document.getElementById('ratioVal').innerText = ratio;
+
+      // Format activity string
+      let actText = 'Moderate Exercise';
+      if (activity === 'sedentary') actText = 'Sedentary';
+      else if (activity === 'light') actText = 'Light Exercise';
+      else if (activity === 'heavy') actText = 'Very Active';
+      else if (activity === 'athlete') actText = 'Athlete';
+
+      // Format goal string
+      let goalText = 'Gain Muscle';
+      if (goal === 'fat_loss') goalText = 'Lose Fat';
+      else if (goal === 'maintenance') goalText = 'Maintenance';
+
+      // Format preference string
+      let prefText = 'Optimal Intake';
+      if (preference === 'minimum') prefText = 'Minimum Target';
+      else if (preference === 'high') prefText = 'High Target';
+
+      // Set tags
+      document.getElementById('tagGoal').innerText = goalText;
+      document.getElementById('tagActivity').innerText = actText;
+      document.getElementById('tagPreference').innerText = prefText;
+
+      // Update progress bar
+      const min = 80;
+      const max = 220;
+      let pct = Math.max(0, Math.min(100, ((target - min) / (max - min)) * 100));
+      document.getElementById('progressBar').style.width = pct + '%';
+
+      // Personalized summary
+      const perMeal = Math.round(target / 4);
+      let summary = '';
+      if (goal === 'fat_loss') {
+        summary = `At ${target}g/day (${ratio}g/kg), your protein intake is set high to preserve lean muscle during a calorie deficit. Splitting ${perMeal}g across 3–5 meals makes it easier to hit your target and stay satiated. Prioritize lean sources like chicken, eggs, and Greek yogurt.`;
+      } else if (goal === 'muscle_gain') {
+        summary = `Your ${target}g daily target (${ratio}g/kg) supports muscle protein synthesis for growth. Aim for ${perMeal}g per meal across 4 meals, with one serving within 2 hours post-workout. Combine with a moderate calorie surplus for best results.`;
+      } else {
+        summary = `Your maintenance protein target of ${target}g/day (${ratio}g/kg) supports recovery and overall health at your activity level. Distribute ${perMeal}g across meals and adjust upward if training intensity increases.`;
+      }
+      document.getElementById('summaryText').textContent = summary;
+
+      // Show recommendations
+      const foodSec = document.getElementById('foodSection');
+      foodSec.style.display = 'block';
+      document.getElementById('foodTargetLabel').innerText = target + 'g';
+
+      // Scroll to view
+      setTimeout(() => {
+        rCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 300);
+    }
+
+    // Reset Form fields
+    function resetForm() {
+      document.getElementById('calcForm').reset();
+      setGender('male');
+      setWeightUnit('kg');
+      document.getElementById('resultCard').style.display = 'none';
+      document.getElementById('foodSection').style.display = 'none';
+      document.getElementById('resultEmpty').style.display = 'flex';
+    }
+
+    // Copy Results
+    function copyResults() {
+      const text = `Optimal Daily Protein Intake: ${calculatedTarget}g/day\nPer Meal Target (4 meals): ${Math.round(calculatedTarget / 4)}g\nPer kg Bodyweight Ratio: ${calculatedRatio}g/kg\nCalculated at: https://kartavyapathak.com/tools/protein-calculator/`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Results copied to clipboard!');
+      });
+    }
+
+    // Download text report
+    function downloadTxt() {
+      const text = `PROTEIN INTAKE REPORT\n=======================\nOptimal Daily Protein Target: ${calculatedTarget}g/day\nPer Meal Target (4 meals):   ${Math.round(calculatedTarget / 4)}g\nPer kg Bodyweight Ratio:     ${calculatedRatio}g/kg\n=======================\nDisclaimer: Science-based nutritional target guidelines. Consult a professional before starting new diets.\n\nGenerated at: https://kartavyapathak.com/tools/protein-calculator/`;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const anchor = document.createElement('a');
+      anchor.download = `protein_report_${calculatedTarget}g.txt`;
+      anchor.href = window.URL.createObjectURL(blob);
+      anchor.click();
+      window.URL.revokeObjectURL(anchor.href);
+      showToast('File downloaded!');
+    }
+
+    // Show copy toast feedback popup
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.add('active');
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 2500);
+    }
+
+    // Keyboard shortcut handlers
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        calculate();
+      }
+    });
+
+    // FAQ Accordion Toggles
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.faq-panel').style.maxHeight = null;
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        const panel = item.querySelector('.faq-panel');
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    }
+
+    // Mouse movement cursor glow logic
+    const cursorGlow = document.getElementById('cursorGlow');
+    let glowRAF;
+    document.addEventListener('mousemove', (e) => {
+      cancelAnimationFrame(glowRAF);
+      glowRAF = requestAnimationFrame(() => {
+        if (cursorGlow) {
+          cursorGlow.style.left = e.clientX + 'px';
+          cursorGlow.style.top = e.clientY + 'px';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

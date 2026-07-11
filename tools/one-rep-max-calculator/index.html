@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate your one-rep max (1RM) from submaximal lifts using the Epley formula.">
+  <title>One Rep Max Calculator | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied!</div>
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container" style="padding-bottom: 100px;">
+    <section class="calc-hero">
+      <span class="calc-tag">Strength</span>
+      <h1>One Rep Max Calculator</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">Estimate your 1RM and training zones from any weight and rep combination.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Your Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); runCalculator();">
+          <div class="form-group">
+            <label class="form-label">Exercise</label>
+            <select id="exercise" class="input-field">
+              <option value="squat">Squat</option>
+              <option value="bench" selected>Bench Press</option>
+              <option value="deadlift">Deadlift</option>
+              <option value="ohp">Overhead Press</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Weight Lifted (kg)</label>
+            <input type="number" id="liftWeight" class="input-field" min="1" max="500" value="80" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reps Completed</label>
+            <input type="number" id="reps" class="input-field" min="1" max="12" value="5" required>
+          </div>
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate</button>
+            <button type="button" class="btn-reset" onclick="resetCalculator()">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">🏋️</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 260px;">Enter your details and hit calculate for personalized results.</p>
+          </div>
+        </div>
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Your Results</span>
+            <div class="result-val"><span id="mainResult">0</span><span class="result-unit" id="mainUnit"></span></div>
+          </div>
+          <div class="result-list" id="resultRows"></div>
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyReport(lastReport)">Copy Results</button>
+            <button class="btn-action" onclick="downloadReport('one-rep-max-calculator-report.txt', lastReport)">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="calc-disclaimer">
+      <p><strong>Disclaimer:</strong> These calculators provide general fitness and nutrition estimates based on sports science literature. They are not medical advice. Consult a healthcare professional before making major diet or training changes.</p>
+    </section>
+  </main>
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+  <script src="/tools/js/calculator-common.js"></script>
+  <script>
+
+    let lastReport = '';
+
+    function runCalculator() {
+      const weight = +document.getElementById('liftWeight').value;
+      const reps = +document.getElementById('reps').value;
+      const exercise = document.getElementById('exercise').value;
+      const orm = calcOneRepMax(weight, reps);
+      const zones = [
+        { pct: 95, label: 'Max Strength', reps: '1-2' },
+        { pct: 85, label: 'Strength', reps: '3-5' },
+        { pct: 75, label: 'Hypertrophy', reps: '6-10' },
+        { pct: 65, label: 'Endurance', reps: '12-15' }
+      ];
+
+      document.getElementById('mainResult').textContent = orm;
+      document.getElementById('mainUnit').textContent = ' kg (est. 1RM)';
+      renderResultRows(zones.map(z => ({
+        label: z.label + ' (' + z.reps + ' reps)',
+        value: Math.round(orm * z.pct / 100) + ' kg (' + z.pct + '%)'
+      })));
+
+      const summary = `Your estimated ${exercise} 1RM is ${orm}kg based on ${weight}kg × ${reps} reps. For strength, train around ${Math.round(orm*0.85)}kg for 3–5 reps. For hypertrophy, ${Math.round(orm*0.75)}kg for 6–10 reps works well. Re-test every 4–6 weeks as your strength improves.`;
+      renderSummary(summary);
+      lastReport = `1RM Estimate: ${orm}kg\nBased on: ${weight}kg x ${reps}\n\n${summary}`;
+      showResults();
+    }
+
+    function resetCalculator() {
+      document.getElementById('calcForm').reset();
+      resetResults();
+    }
+    window.runCalculator = runCalculator;
+
+  </script>
+</body>
+</html>

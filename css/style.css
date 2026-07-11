@@ -700,6 +700,11 @@ body:hover .cursor-glow { opacity: 1; }
 }
 
 /* Skills / PR Board */
+/* Skills section hidden — preserved in HTML for future use */
+#skills {
+  display: none !important;
+}
+
 .skills { background: var(--bg-elevated); }
 
 .pr-board {
@@ -879,6 +884,33 @@ body:hover .cursor-glow { opacity: 1; }
 }
 
 .projects-note strong { color: var(--text); }
+
+.tools-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+.tools-preview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: all var(--transition);
+  font-size: 0.85rem;
+}
+.tools-preview-card span { font-size: 1.5rem; }
+.tools-preview-card strong { font-weight: 600; color: var(--text); }
+.tools-preview-card:hover {
+  border-color: rgba(200, 255, 0, 0.3);
+  transform: translateY(-4px);
+  color: var(--accent);
+}
 
 /* Typing section */
 .typing {

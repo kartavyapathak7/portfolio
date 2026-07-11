@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate BMI and estimate body fat percentage using the US Navy method.">
+  <title>BMI + Body Fat Calculator | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied!</div>
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container" style="padding-bottom: 100px;">
+    <section class="calc-hero">
+      <span class="calc-tag">Body Composition</span>
+      <h1>BMI + Body Fat Calculator</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">Get your BMI category and body fat estimate from simple body measurements.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Your Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); runCalculator();">
+          <div class="form-group">
+            <span class="form-label">Gender</span>
+            <div class="toggle-group" id="genderToggle">
+              <button type="button" class="toggle-btn active" onclick="state.gender='male';setToggle('genderToggle','male',['male','female'])">♂ Male</button>
+              <button type="button" class="toggle-btn" onclick="state.gender='female';setToggle('genderToggle','female',['male','female'])">♀ Female</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Age</label>
+              <input type="number" id="age" class="input-field" value="25" required>
+            </div>
+            <div class="form-group">
+            <label class="form-label">Weight</label>
+            <div class="weight-input-wrap">
+              <input type="number" id="weight" class="input-field" min="30" max="300" value="72" required>
+              <div class="unit-switch" id="weightUnitToggle">
+                <button type="button" class="unit-btn active" onclick="state.weightUnit='kg';setUnit('weightUnitToggle','kg')">kg</button>
+                <button type="button" class="unit-btn" onclick="state.weightUnit='lbs';setUnit('weightUnitToggle','lbs')">lbs</button>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Height (cm)</label>
+            <input type="number" id="height" class="input-field" value="175" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Waist (cm, at navel)</label>
+            <input type="number" id="waist" class="input-field" value="82" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Neck (cm)</label>
+            <input type="number" id="neck" class="input-field" value="38" required>
+          </div>
+          <div class="form-group" id="hipGroup">
+            <label class="form-label">Hip (cm, women only)</label>
+            <input type="number" id="hip" class="input-field" value="95">
+          </div>
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate</button>
+            <button type="button" class="btn-reset" onclick="resetCalculator()">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">📏</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 260px;">Enter your details and hit calculate for personalized results.</p>
+          </div>
+        </div>
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Your Results</span>
+            <div class="result-val"><span id="mainResult">0</span><span class="result-unit" id="mainUnit"></span></div>
+          </div>
+          <div class="result-list" id="resultRows"></div>
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyReport(lastReport)">Copy Results</button>
+            <button class="btn-action" onclick="downloadReport('bmi-bodyfat-calculator-report.txt', lastReport)">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="calc-disclaimer">
+      <p><strong>Disclaimer:</strong> These calculators provide general fitness and nutrition estimates based on sports science literature. They are not medical advice. Consult a healthcare professional before making major diet or training changes.</p>
+    </section>
+  </main>
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+  <script src="/tools/js/calculator-common.js"></script>
+  <script>
+
+    const state = { gender: 'male', weightUnit: 'kg' };
+    let lastReport = '';
+
+    function bmiCategory(bmi) {
+      if (bmi < 18.5) return 'Underweight';
+      if (bmi < 25) return 'Normal';
+      if (bmi < 30) return 'Overweight';
+      return 'Obese';
+    }
+    function bfCategory(bf, gender) {
+      if (gender === 'male') {
+        if (bf < 6) return 'Essential Fat';
+        if (bf < 14) return 'Athletic';
+        if (bf < 18) return 'Fitness';
+        if (bf < 25) return 'Average';
+        return 'Above Average';
+      }
+      if (bf < 14) return 'Essential Fat';
+      if (bf < 21) return 'Athletic';
+      if (bf < 25) return 'Fitness';
+      if (bf < 32) return 'Average';
+      return 'Above Average';
+    }
+
+    function runCalculator() {
+      const weight = toKg(+document.getElementById('weight').value, state.weightUnit);
+      const height = +document.getElementById('height').value;
+      const waist = +document.getElementById('waist').value;
+      const neck = +document.getElementById('neck').value;
+      const hip = +document.getElementById('hip').value || 0;
+      const bmi = calcBMI(weight, height);
+      const bf = calcNavyBodyFat(state.gender, height, waist, neck, hip);
+      const lbm = Math.round(weight * (1 - bf/100) * 10) / 10;
+      const fatMass = Math.round(weight * bf/100 * 10) / 10;
+
+      document.getElementById('mainResult').textContent = bf;
+      document.getElementById('mainUnit').textContent = '% body fat';
+      renderResultRows([
+        { label: 'BMI', value: bmi + ' (' + bmiCategory(bmi) + ')' },
+        { label: 'Body Fat Category', value: bfCategory(bf, state.gender) },
+        { label: 'Lean Body Mass', value: lbm + ' kg' },
+        { label: 'Fat Mass', value: fatMass + ' kg' }
+      ]);
+
+      const summary = `Your BMI is ${bmi} (${bmiCategory(bmi)}) and estimated body fat is ${bf}% (${bfCategory(bf, state.gender)}). ${bf > (state.gender === 'male' ? 20 : 28) ? 'A moderate calorie deficit with resistance training can improve body composition while preserving your ' + lbm + 'kg of lean mass.' : 'You are in a healthy range — focus on strength training and protein to maintain lean mass as you age.'} Track waist measurements monthly for more actionable progress than scale weight alone.`;
+      renderSummary(summary);
+      lastReport = `BMI: ${bmi}\nBody Fat: ${bf}%\nLBM: ${lbm}kg\n\n${summary}`;
+      showResults();
+    }
+
+    function resetCalculator() {
+      document.getElementById('calcForm').reset();
+      state.gender = 'male'; state.weightUnit = 'kg';
+      setToggle('genderToggle', 'male', ['male','female']);
+      setUnit('weightUnitToggle', 'kg');
+      resetResults();
+    }
+    window.runCalculator = runCalculator;
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate how long until visible abs based on current body fat and deficit.">
+  <title>How Long Until Visible Abs? | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied!</div>
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container" style="padding-bottom: 100px;">
+    <section class="calc-hero">
+      <span class="calc-tag">Aesthetics</span>
+      <h1>How Long Until Visible Abs?</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">Estimate the timeline to visible abs based on your current body fat and training.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Your Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); runCalculator();">
+<div class="form-group">
+            <span class="form-label">Gender</span>
+            <div class="toggle-group" id="genderToggle">
+              <button type="button" class="toggle-btn active" onclick="state.gender='male';setToggle('genderToggle','male',['male','female'])">♂ Male</button>
+              <button type="button" class="toggle-btn" onclick="state.gender='female';setToggle('genderToggle','female',['male','female'])">♀ Female</button>
+            </div>
+          </div>
+                    <div class="form-group">
+            <label class="form-label">Weight</label>
+            <div class="weight-input-wrap">
+              <input type="number" id="weight" class="input-field" min="30" max="300" value="72" required>
+              <div class="unit-switch" id="weightUnitToggle">
+                <button type="button" class="unit-btn active" onclick="state.weightUnit='kg';setUnit('weightUnitToggle','kg')">kg</button>
+                <button type="button" class="unit-btn" onclick="state.weightUnit='lbs';setUnit('weightUnitToggle','lbs')">lbs</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Body Fat %</label>
+            <input type="number" id="currentBF" class="input-field" min="8" max="40" step="0.1" value="20" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Activity Level</label>
+            <select id="activity" class="input-field">
+              <option value="light">Light Training</option>
+              <option value="moderate" selected>Moderate Training</option>
+              <option value="heavy">Heavy Training</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Weekly Calorie Deficit</label>
+            <select id="deficit" class="input-field">
+              <option value="2500">Mild (~0.3kg/week)</option>
+              <option value="3500" selected>Moderate (~0.5kg/week)</option>
+              <option value="5000">Aggressive (~0.7kg/week)</option>
+            </select>
+          </div>
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate</button>
+            <button type="button" class="btn-reset" onclick="resetCalculator()">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">🔲</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 260px;">Enter your details and hit calculate for personalized results.</p>
+          </div>
+        </div>
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Your Results</span>
+            <div class="result-val"><span id="mainResult">0</span><span class="result-unit" id="mainUnit"></span></div>
+          </div>
+          <div class="result-list" id="resultRows"></div>
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyReport(lastReport)">Copy Results</button>
+            <button class="btn-action" onclick="downloadReport('visible-abs-calculator-report.txt', lastReport)">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="calc-disclaimer">
+      <p><strong>Disclaimer:</strong> These calculators provide general fitness and nutrition estimates based on sports science literature. They are not medical advice. Consult a healthcare professional before making major diet or training changes.</p>
+    </section>
+  </main>
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+  <script src="/tools/js/calculator-common.js"></script>
+  <script>
+
+    const state = { gender: 'male', weightUnit: 'kg' };
+    let lastReport = '';
+
+    function runCalculator() {
+      const weight = toKg(+document.getElementById('weight').value, state.weightUnit);
+      const currentBF = +document.getElementById('currentBF').value;
+      const deficit = +document.getElementById('deficit').value;
+      const targetBF = visibleAbsBF(state.gender);
+      const lbm = weight * (1 - currentBF/100);
+      const targetWeight = lbm / (1 - targetBF/100);
+      const fatToLose = weight - targetWeight;
+      const weeks = Math.ceil((fatToLose * 7700) / deficit);
+      const months = Math.ceil(weeks / 4);
+
+      document.getElementById('mainResult').textContent = months;
+      document.getElementById('mainUnit').textContent = ' months (est.)';
+      renderResultRows([
+        { label: 'Target Body Fat', value: targetBF + '% (visible abs)' },
+        { label: 'Fat to Lose', value: Math.round(fatToLose*10)/10 + ' kg' },
+        { label: 'Target Weight', value: Math.round(targetWeight*10)/10 + ' kg' },
+        { label: 'Estimated Weeks', value: weeks + ' weeks' }
+      ]);
+
+      const alreadyThere = currentBF <= targetBF;
+      const summary = alreadyThere
+        ? `At ${currentBF}% body fat, you may already have visible abs — genetics and muscle development in the rectus abdominis matter too. Focus on core hypertrophy and posture to enhance definition.`
+        : `At ${currentBF}% body fat, visible abs for ${state.gender === 'male' ? 'men' : 'women'} typically appear around ${targetBF}%. You need to lose ~${Math.round(fatToLose*10)/10}kg of fat, which at your chosen deficit takes roughly ${months} months (${weeks} weeks). Train abs 2–3x/week but remember: abs are revealed in the kitchen, not just the gym.`;
+      renderSummary(summary);
+      lastReport = `Visible Abs Timeline: ${months} months\n${currentBF}% → ${targetBF}%\n\n${summary}`;
+      showResults();
+    }
+
+    function resetCalculator() {
+      document.getElementById('calcForm').reset();
+      state.gender = 'male'; state.weightUnit = 'kg';
+      setToggle('genderToggle', 'male', ['male','female']);
+      setUnit('weightUnitToggle', 'kg');
+      resetResults();
+    }
+    window.runCalculator = runCalculator;
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find optimal bedtimes and wake times based on 90-minute sleep cycles.">
+  <title>Sleep Calculator | Kartavya Pathak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/tools/css/calculator.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div id="toast" class="toast-notif">Copied!</div>
+  <header class="nav" id="nav">
+    <nav class="nav-inner">
+      <a href="/#hero" class="logo" aria-label="Kartavya Pathak home">
+        <span class="logo-mark">KP</span>
+        <span class="logo-text">kartavyapathak<span class="logo-dot">.com</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#hero">Home</a></li>
+        <li><a href="/tools" class="active">Tools</a></li>
+        <li><a href="/#certifications">Certs</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container" style="padding-bottom: 100px;">
+    <section class="calc-hero">
+      <span class="calc-tag">Recovery</span>
+      <h1>Sleep Calculator</h1>
+      <p class="section-desc" style="max-width: 600px; margin: 8px auto 0;">Wake up refreshed by aligning sleep and wake times with natural 90-minute cycles.</p>
+    </section>
+    <section class="calc-layout">
+      <div class="calc-card">
+        <div class="calc-card-title">
+          <span>Your Details</span>
+          <span class="calc-kbd">Press Ctrl+Enter to calculate</span>
+        </div>
+        <form id="calcForm" onsubmit="event.preventDefault(); runCalculator();">
+          <div class="form-group">
+            <label class="form-label">Mode</label>
+            <select id="mode" class="input-field">
+              <option value="wake">I need to wake up at...</option>
+              <option value="sleep" selected>I want to go to bed at...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time (24h format)</label>
+            <input type="time" id="timeInput" class="input-field" value="23:00" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Minutes to Fall Asleep</label>
+            <input type="number" id="fallAsleep" class="input-field" min="5" max="60" value="15">
+          </div>
+          <div class="calc-btn-group">
+            <button type="submit" class="btn-calc">Calculate</button>
+            <button type="button" class="btn-reset" onclick="resetCalculator()">Reset</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div id="resultEmpty" class="result-empty">
+          <span style="font-size: 3.5rem;">😴</span>
+          <div>
+            <h3 style="color: var(--text); font-size: 1.15rem; margin-bottom: 4px;">Ready to Calculate</h3>
+            <p style="font-size: 0.9rem; max-width: 260px;">Enter your details and hit calculate for personalized results.</p>
+          </div>
+        </div>
+        <div id="resultCard" class="calc-card result-content">
+          <div class="result-large">
+            <span class="form-label">Your Results</span>
+            <div class="result-val"><span id="mainResult">0</span><span class="result-unit" id="mainUnit"></span></div>
+          </div>
+          <div class="result-list" id="resultRows"></div>
+          <div class="summary-box">
+            <h4>Personalized Summary</h4>
+            <p id="summaryText"></p>
+          </div>
+          <div class="result-actions">
+            <button class="btn-action" onclick="copyReport(lastReport)">Copy Results</button>
+            <button class="btn-action" onclick="downloadReport('sleep-calculator-report.txt', lastReport)">Download</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="calc-disclaimer">
+      <p><strong>Disclaimer:</strong> These calculators provide general fitness and nutrition estimates based on sports science literature. They are not medical advice. Consult a healthcare professional before making major diet or training changes.</p>
+    </section>
+  </main>
+  <footer class="footer container" style="text-align: center; padding-bottom: 45px;">
+    <p class="footer-pun">Built with curiosity and consistency.</p>
+    <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+  </footer>
+  <script src="/tools/js/calculator-common.js"></script>
+  <script>
+
+    let lastReport = '';
+
+    function addMinutes(date, mins) {
+      return new Date(date.getTime() + mins * 60000);
+    }
+    function fmtTime(d) {
+      return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+
+    function runCalculator() {
+      const mode = document.getElementById('mode').value;
+      const [h, m] = document.getElementById('timeInput').value.split(':').map(Number);
+      const fallAsleep = +document.getElementById('fallAsleep').value;
+      const base = new Date(); base.setHours(h, m, 0, 0);
+      const cycles = [4, 5, 6];
+      const results = [];
+
+      if (mode === 'sleep') {
+        const sleepStart = addMinutes(base, fallAsleep);
+        cycles.forEach(c => {
+          const wake = addMinutes(sleepStart, c * 90);
+          results.push({ label: c + ' cycles (' + (c*1.5) + 'h sleep)', value: 'Wake at ' + fmtTime(wake) });
+        });
+        document.getElementById('mainResult').textContent = fmtTime(addMinutes(sleepStart, 5*90));
+        document.getElementById('mainUnit').textContent = ' (recommended)';
+      } else {
+        cycles.forEach(c => {
+          const bed = addMinutes(base, -(c * 90 + fallAsleep));
+          results.push({ label: c + ' cycles (' + (c*1.5) + 'h sleep)', value: 'Sleep at ' + fmtTime(bed) });
+        });
+        document.getElementById('mainResult').textContent = fmtTime(addMinutes(base, -(5*90 + fallAsleep)));
+        document.getElementById('mainUnit').textContent = ' (recommended bedtime)';
+      }
+
+      renderResultRows(results);
+      const summary = mode === 'sleep'
+        ? `Going to bed around ${fmtTime(base)} with ${fallAsleep} min to fall asleep, aim for 5 complete cycles (7.5 hours) for optimal recovery. Waking mid-cycle leaves you groggy — the times above align with cycle endings.`
+        : `To wake at ${fmtTime(base)} feeling refreshed, work backward in 90-min cycles plus ${fallAsleep} min to fall asleep. The 5-cycle option gives the best balance of recovery and practicality for most adults.`;
+      renderSummary(summary);
+      lastReport = `Sleep Calculator\n${summary}`;
+      showResults();
+    }
+
+    function resetCalculator() {
+      document.getElementById('calcForm').reset();
+      resetResults();
+    }
+    window.runCalculator = runCalculator;
+
+  </script>
+</body>
+</html>
