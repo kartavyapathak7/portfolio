@@ -51,11 +51,11 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#projects">Tools</a></li>
+        <!-- <li><a href="#hero">Home</a></li> -->
+        <li><a href="#projects" class="active">Tools</a></li>
         <li><a href="/tools/">Tools Hub</a></li>
-        <li><a href="#certifications">Certs</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <!-- <li><a href="#certifications">Certs</a></li> -->
+        <!-- <li><a href="#contact" class="nav-cta">Contact</a></li> -->
       </ul>
     </nav>
   </header>
@@ -63,7 +63,7 @@
 
   
   <main>
-    <!-- Hero -->
+    <!-- Personal Hero (Commented out for Tools Hub view)
     <section class="hero" id="hero">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-layout">
@@ -179,9 +179,24 @@
         </div>
       </div>
     </section>
+    -->
+
+    <!-- Tools Hub Hero -->
+    <section class="tools-hero" style="padding: 160px 0 60px; text-align: center;">
+      <div class="tools-hero-tag">
+        <span class="pulse-dot" style="background-color: var(--accent);"></span>
+        100% Free · No Sign Up Required
+      </div>
+      <h1 style="font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.9; margin-bottom: 20px; letter-spacing: -0.01em;">
+        FREE ONLINE <span class="text-accent">WEB TOOLS</span>
+      </h1>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
+        A growing suite of lightweight fitness, macro, and productivity calculators designed to run directly in your browser with zero bloat.
+      </p>
+    </section>
 
     
-    <!-- Skills / Stack -->
+    <!-- Skills / Stack (Commented out for Tools Hub view)
     <section class="section skills" id="skills">
       <div class="container">
         <div class="section-header reveal">
@@ -232,6 +247,7 @@
         </p>
       </div>
     </section>
+    -->
 
     <!-- Projects / Tools -->
     <section class="section projects" id="projects">
@@ -312,7 +328,7 @@
     </section>
 
     
-    <!-- Certifications -->
+    <!-- Certifications & Education & Beyond Code (Commented out for Tools Hub view)
     <section class="section certifications" id="certifications">
       <div class="container">
         <div class="section-header reveal">
@@ -371,7 +387,6 @@
       </div>
     </section>
 
-    <!-- Education -->
     <section class="section education" id="education">
       <div class="container">
         <div class="edu-card reveal">
@@ -417,9 +432,10 @@
         </div>
       </div>
     </aside>
+    -->
 
     
-    <!-- Contact -->
+    <!-- Contact (Commented out for Tools Hub view)
     <section class="section contact" id="contact">
       <div class="container">
         <div class="contact-wrapper reveal">
@@ -455,14 +471,17 @@
             </a>
           </div>
         </div>
-        <footer class="footer reveal">
-          <p class="footer-pun">Built with curiosity and consistency.</p>
-          <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
-        </footer>
       </div>
     </section>
+    -->
+
+    <footer class="footer reveal" style="padding-top: 60px; padding-bottom: 40px; text-align: center;">
+      <p class="footer-pun">Built with curiosity and consistency.</p>
+      <p>© <span id="year"></span> Kartavya Pathak · <a href="https://kartavyapathak.com">kartavyapathak.com</a></p>
+    </footer>
   </main>
 
+  <!-- Chatbot (Commented out for Tools Hub view)
   <div class="chatbot" id="chatbot">
     <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Kartavya's AI assistant">
       <div class="chat-header">
@@ -500,12 +519,11 @@
       <svg class="chat-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
-
-
+  -->
 
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/monkeytype.js"></script>
-  <script src="js/chatbot.js"></script>
+  <!-- <script src="js/monkeytype.js"></script> -->
+  <!-- <script src="js/chatbot.js"></script> -->
 </body>
 </html>
