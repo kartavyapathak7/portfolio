@@ -42,7 +42,7 @@
       align-items: center;
       gap: 8px;
       background: var(--accent-dim);
-      border: 1px solid rgba(200, 255, 0, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.2);
       color: var(--accent);
       padding: 6px 16px;
       border-radius: 100px;
@@ -86,14 +86,14 @@
     }
     .tool-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(200, 255, 0, 0.3);
+      border-color: rgba(56, 189, 248, 0.3);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
     .tool-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(200, 255, 0, 0.05), transparent);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -140,7 +140,7 @@
       font-size: 0.95rem;
     }
     .tool-btn:hover {
-      box-shadow: 0 0 16px rgba(200, 255, 0, 0.35);
+      box-shadow: 0 0 16px var(--accent-glow);
       transform: translateY(-1px);
     }
   </style>

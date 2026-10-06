@@ -4,63 +4,63 @@
   const KNOWLEDGE = [
     {
       keywords: ['who are you', 'who is kartavya', 'about you', 'about kartavya', 'introduce', 'tell me about'],
-      answer: "I'm Kartavya's portfolio assistant. Kartavya Pathak is a CSE freshman at MSRIT (Class of 2030), a Python developer, AI automation enthusiast, and 120 WPM typist. He builds with Python, web tech, and AI tools — and he's actively looking for internships and collaborations."
+      answer: "I'm Kartavya's portfolio assistant. Kartavya Pathak is an EEE student at RV College of Engineering (RVCE, Class of 2030) with strong interests in both Software Engineering (CSE) and Electronics. He's a Python developer, AI automation builder, and 125 WPM typist."
     },
     {
-      keywords: ['skills', 'stack', 'technologies', 'tech stack', 'what can he', 'what does he know', 'programming'],
-      answer: "Kartavya's main stack: Python (backend, scripting, automation), Web Development (HTML, CSS, JavaScript), AI Automation (LLMs, agents, workflows), and 10-finger touch typing at 120 WPM. He's also working on DSA and machine learning."
+      keywords: ['skills', 'stack', 'technologies', 'tech stack', 'what can he', 'what does he know', 'programming', 'hardware', 'eee'],
+      answer: "Kartavya's main stack combines Software Engineering & Electronics: Python (backend, scripting, automation), Electrical & Electronics (EEE) fundamentals, Web Development, AI Automation, and 10-finger touch typing at 125 WPM. He's also expanding into DSA, embedded systems, and machine learning."
     },
     {
-      keywords: ['education', 'college', 'university', 'msrit', 'degree', 'studying', 'student'],
-      answer: "Kartavya is pursuing B.E. Computer Science & Engineering (Core) at MS Ramaiah Institute of Technology (MSRIT), Bangalore. He's currently a freshman, Class of 2030."
+      keywords: ['education', 'college', 'university', 'rvce', 'eee', 'degree', 'studying', 'student'],
+      answer: "Kartavya is pursuing B.E. Electrical & Electronics Engineering (EEE) at RV College of Engineering (RVCE), Bangalore (Class of 2030). He is equally passionate about Software Engineering (CSE) and Electronics."
     },
     {
       keywords: ['typing', 'wpm', 'monkeytype', 'keyboard', 'speed'],
-      answer: "Kartavya types at 120 WPM using 10-finger touch typing. You can check his Monkeytype profile — there's a link in the WPM section on this site."
+      answer: "Kartavya types at 125 WPM using 10-finger touch typing. You can check his live Monkeytype profile stats on this site."
     },
     {
-      keywords: ['project', 'projects', 'built', 'portfolio work', 'github'],
-      answer: "Projects are coming soon — Kartavya is in his first year and building in public. Check the Projects section for upcoming slots, and his GitHub for anything he pushes."
+      keywords: ['project', 'projects', 'built', 'portfolio work', 'github', 'tools'],
+      answer: "Kartavya builds web tools and software applications in public. Check out his interactive fitness web tools and Tools Hub on this site, as well as his GitHub for code."
     },
     {
       keywords: ['certification', 'certificate', 'certified', 'cybersecurity', 'techhacker'],
-      answer: "Kartavya holds certificates in Introduction to Cybersecurity for Business and the Techhacker Exploitation Course. View them in the Certifications section — more are on the way."
+      answer: "Kartavya holds certificates in Introduction to Cybersecurity for Business and the Techhacker Exploitation Course. View them in the Certifications section."
     },
     {
       keywords: ['contact', 'email', 'reach', 'hire', 'internship', 'collaborate', 'linkedin'],
-      answer: "You can reach Kartavya via email at kartavyapathak40@gmail.com, or connect on LinkedIn and GitHub — links are in the Contact section. He's open to internships and collaborations."
+      answer: "You can reach Kartavya via email at kartavyapathak40@gmail.com, or connect on LinkedIn and GitHub. He is open to software engineering, electronics, and tech opportunities."
     },
     {
       keywords: ['ai', 'automation', 'llm', 'agent'],
-      answer: "AI automation is one of Kartavya's strengths. He uses LLMs and agents to automate workflows and ship faster — treating AI as a force multiplier for development work."
+      answer: "AI automation is one of Kartavya's core strengths. He uses LLMs, agentic workflows, and automation to build tools and ship fast."
     },
     {
       keywords: ['python', 'javascript', 'html', 'css', 'web dev'],
-      answer: "Kartavya works primarily in Python for backend logic and automation, and HTML/CSS/JavaScript for web interfaces. He's continuously leveling up both."
+      answer: "Kartavya works primarily in Python for backend logic & automation, HTML/CSS/JavaScript for web interfaces, and electronics for hardware logic."
     },
     {
       keywords: ['blog', 'gym', 'fitness', 'gym24', 'workout'],
-      answer: "On the side, Kartavya runs a fitness blog at gym24-7.blogspot.com — it's a personal hobby, separate from his CS work. Discipline from fitness carries over, but his focus here is software engineering."
+      answer: "On the side, Kartavya runs a fitness blog at gym24-7.blogspot.com — it's a personal hobby alongside his engineering work."
     },
     {
-      keywords: ['location', 'where', 'bangalore', 'india'],
-      answer: "Kartavya studies at MSRIT in Bangalore, India."
+      keywords: ['location', 'where', 'bangalore', 'india', 'rvce'],
+      answer: "Kartavya studies at RV College of Engineering (RVCE) in Bangalore, India."
     },
     {
       keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening'],
-      answer: "Hey! 👋 I'm Kartavya's AI assistant. Ask me about his skills, education, projects, certifications, or how to get in touch."
+      answer: "Hey! 👋 I'm Kartavya's AI assistant. Ask me about his skills in software & electronics, education at RVCE EEE, projects, or how to get in touch."
     },
     {
       keywords: ['help', 'what can you', 'what do you'],
-      answer: "I can answer questions about Kartavya — his background, skills, education, certifications, typing speed, and contact info. I also handle general tech questions. Try: \"What are his skills?\" or \"How can I contact him?\""
+      answer: "I can answer questions about Kartavya — his background, skills in Software Engineering & Electronics, education at RVCE, typing speed, and contact info. Try: \"What are his skills?\" or \"Tell me about Kartavya.\""
     },
     {
-      keywords: ['dsa', 'data structure', 'algorithm', 'leetcode'],
-      answer: "Kartavya is actively building his DSA skills — it's on his learning roadmap alongside machine learning. He's a freshman putting in the reps early."
+      keywords: ['dsa', 'data structure', 'algorithm', 'leetcode', 'embedded'],
+      answer: "Kartavya is actively building his DSA and embedded systems skills alongside machine learning as part of his software engineering and EEE path."
     },
     {
       keywords: ['machine learning', 'ml', 'deep learning', 'ai ml'],
-      answer: "Machine learning is on Kartavya's upcoming PR board — he's planning to add it to his skill set soon. Right now his AI focus is more on automation and LLM workflows."
+      answer: "Machine learning is on Kartavya's learning roadmap. Right now his focus is on software engineering, electronics, automation, and LLM agentic workflows."
     }
   ];
 

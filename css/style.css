@@ -3,18 +3,18 @@
    ============================================ */
 
 :root {
-  --bg: #08080a;
-  --bg-elevated: #111114;
-  --bg-card: #16161a;
+  --bg: #0b0f17;
+  --bg-elevated: #111827;
+  --bg-card: #1e293b;
   --border: rgba(255, 255, 255, 0.08);
-  --text: #f0f0f2;
-  --text-muted: #8a8a96;
-  --accent: #c8ff00;
-  --accent-dim: rgba(200, 255, 0, 0.15);
-  --accent-glow: rgba(200, 255, 0, 0.4);
-  --orange: #ff5c2b;
-  --orange-dim: rgba(255, 92, 43, 0.15);
-  --steel: #2a2a32;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-dim: rgba(56, 189, 248, 0.10);
+  --accent-glow: rgba(56, 189, 248, 0.20);
+  --orange: #818cf8;
+  --orange-dim: rgba(129, 140, 248, 0.10);
+  --steel: #334155;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Outfit', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -312,8 +312,8 @@ body:hover .cursor-glow { opacity: 1; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(200, 255, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200, 255, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
   pointer-events: none;
@@ -554,7 +554,7 @@ body:hover .cursor-glow { opacity: 1; }
 .orb-3 {
   width: 180px;
   height: 180px;
-  background: rgba(200, 255, 0, 0.5);
+  background: rgba(56, 189, 248, 0.3);
   top: 50%;
   left: 40%;
   animation-delay: -8s;
@@ -650,7 +650,7 @@ body:hover .cursor-glow { opacity: 1; }
 
 .about-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(200, 255, 0, 0.3);
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
 .about-icon { font-size: 2rem; margin-bottom: 16px; }
@@ -670,7 +670,7 @@ body:hover .cursor-glow { opacity: 1; }
 
 .about-card-wide {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(200, 255, 0, 0.05) 100%);
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(56, 189, 248, 0.05) 100%);
 }
 
 .about-quote {
@@ -907,7 +907,7 @@ body:hover .cursor-glow { opacity: 1; }
 .tools-preview-card span { font-size: 1.5rem; }
 .tools-preview-card strong { font-weight: 600; color: var(--text); }
 .tools-preview-card:hover {
-  border-color: rgba(200, 255, 0, 0.3);
+  border-color: rgba(56, 189, 248, 0.3);
   transform: translateY(-4px);
   color: var(--accent);
 }
@@ -1294,7 +1294,7 @@ body:hover .cursor-glow { opacity: 1; }
 
 .cert-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(200, 255, 0, 0.3);
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
 .cert-thumb-wrap {
